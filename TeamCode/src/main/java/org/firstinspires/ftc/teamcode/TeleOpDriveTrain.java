@@ -70,10 +70,10 @@ public class TeleOpDriveTrain extends LinearOpMode {
             if (gamepad2.x && !xPressed) {
                 xPressed = true;
                 if (xKey) {
-                    robot.cc.setPosition(null);
+                    robot.cc.setPosition(0);
                     xKey = false;
                 } else {
-                    robot.cc.setPosition(null);
+                    robot.cc.setPosition(0);
                     xKey = true;
                 }
             } else {
