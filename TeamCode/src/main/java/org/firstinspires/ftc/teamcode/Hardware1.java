@@ -27,7 +27,21 @@ public class Hardware1 {
         //Right Front Motor
          try{
              rf =hwMap.get(DcMotor.class, "rf");
-             
+             rf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+             rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+             rf.setPower(0);
+         } catch (Exception p_exception) {
+             rf = null;
+         }
+
+         //Right Back Motor
+         try{
+             rb =hwMap.get(DcMotor.class, "rb");
+             rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+             rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+             rb.setPower(0);
+         } catch (Exception p_exception) {
+             rb = null;
          }
      }
 
