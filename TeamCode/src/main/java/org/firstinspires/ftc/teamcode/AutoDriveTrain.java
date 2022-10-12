@@ -19,6 +19,11 @@ public class AutoDriveTrain extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+        //forward
+        forward(400, 0.5);
+
+        //stop
+        robot.setPower(0,0,0,0);
 
 
 
