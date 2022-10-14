@@ -9,7 +9,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 public class ConePipeline extends OpenCvPipeline{
     private Mat workingMatrix = new Mat();
-    public String position = "LEFT";
+    public String position = "CENTER";
 
     public ConePipeline(){
 

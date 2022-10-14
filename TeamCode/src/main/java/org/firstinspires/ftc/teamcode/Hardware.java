@@ -8,6 +8,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 
+/**
+ * 192.168.43.1:8080/dash
+ * must be connected to robot wifi
+ */
 
 public class Hardware {
 
