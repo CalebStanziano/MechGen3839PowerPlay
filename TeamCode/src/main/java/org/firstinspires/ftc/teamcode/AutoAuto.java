@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous (name = "Drive Train Auto")
-public class AutoDriveTrain extends LinearOpMode {
+@Autonomous(name = "AutoAuto")
+public class AutoAuto extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -18,16 +18,63 @@ public class AutoDriveTrain extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
+        GoToPositionRobot(1,1,0.5);
+    }
 
-        //forward
-        forward(400, 0.5);
+    public void GoToPositionRobot(double x, double y, double speed){
+        double wheelCircumference = 4 * Math.PI;
+        double wheelMotor = 560;
+        double distance = y/x;
+        double ticks = (distance * (wheelMotor / wheelCircumference));
+        if(x < -6){
+            robot.setPower(0,0,0,0);
+            telemetry.addData("GoToPositionRobot", "Failed");
+            telemetry.update();
+        }
+        if(x > 6){
+            robot.setPower(0,0,0,0);
+            telemetry.addData("GoToPositionRobot", "Failed");
+            telemetry.update();
+        }
+        if(y > 12){
+            robot.setPower(0,0,0,0);
+            telemetry.addData("GoToPositionRobot", "Failed");
+            telemetry.update();
+        }
+        robot.setPower(0, 0, 0, 0);
 
-        //stop
+        robot.rf.setTargetPosition((int) Math.round(ticks));
+        robot.lf.setTargetPosition((int) Math.round(ticks));
+        robot.rb.setTargetPosition((int) Math.round(ticks));
+        robot.lb.setTargetPosition((int) Math.round(ticks));
+
+        robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        robot.rf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lf.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        robot.setPower(speed, speed, speed, speed);
+
+        while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
+
+        }
         robot.setPower(0,0,0,0);
 
-
+        robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
     }
+
+
+
+
     public void forward(double distanceMoving, double speedMoving) {
 
         double wheelCircumference = 4 * Math.PI;
@@ -237,4 +284,5 @@ public class AutoDriveTrain extends LinearOpMode {
         }
         robot.setPower(0,0,0,0);
     }
+
 }
