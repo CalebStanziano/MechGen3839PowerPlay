@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.MechanicalGeniuses3839;
+package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
