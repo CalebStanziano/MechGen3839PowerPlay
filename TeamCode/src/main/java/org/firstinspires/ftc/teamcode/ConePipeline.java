@@ -5,11 +5,11 @@ import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.core.Scalar;
 import org.opencv.imgproc.Imgproc;
-import org.opencv.easyopencv.OpenCvPipeline;
+//import org.opencv.easyopencv.OpenCvPipeline;
 
-public class ConePipeline extends OpenCvPipeline{
+public class ConePipeline /**extends OpenCvPipeline **/{
     private Mat workingMatrix = new Mat();
-    public String position = "CENTER";
+    public String position = "BLUE";
 
     public ConePipeline(){
 
@@ -30,7 +30,17 @@ public class ConePipeline extends OpenCvPipeline{
         centerTotal /= matCenter.cols() * matCenter.rows();
 
         //logic here:
-
+        //Blue = 200 Red = 100 Green = 0 These are fake numbers
+        /**CHANGE LATER!**/
+        if(centerTotal > 100){
+            position = "BLUE";
+        }
+        if(centerTotal < 100){
+            position = "GREEN";
+        }
+        if(centerTotal > 0 && centerTotal < 200 ){
+            position = "RED";
+        }
 
         return workingMatrix;
     }
