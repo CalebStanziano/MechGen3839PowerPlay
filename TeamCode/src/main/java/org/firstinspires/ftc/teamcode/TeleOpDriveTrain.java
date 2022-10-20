@@ -83,10 +83,15 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 xPressed = false;
             }
 
+            //cc Way #2
+            if(gamepad1.a){
+                robot.cc.setPosition(0.377);
+            }
+
 
         }
 
-        /*//Turret Motor Spin
+        /**Turret Motor Spin
         public void spinTurret() {
             if (gamepad2.right_stick_x = 1) {
             robot.tm.setPower();

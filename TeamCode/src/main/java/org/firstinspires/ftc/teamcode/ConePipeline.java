@@ -25,7 +25,7 @@ public class ConePipeline /**extends OpenCvPipeline **/{
 
         Imgproc.rectangle(workingMatrix, new Rect(10, 120, 40, 30), new Scalar(0,255,0));
 
-        //0 =red, 1 = green, 2 = blue
+        //0 = red, 1 = green, 2 = blue
         double centerTotal =Core.sumElems(matCenter).val[2];
         centerTotal /= matCenter.cols() * matCenter.rows();
 
