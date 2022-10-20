@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/**package org.firstinspires.ftc.teamcode;
 
 import android.graphics.Bitmap;
 import android.graphics.ImageFormat;
@@ -46,16 +46,16 @@ public class TestVision extends LinearOpMode {
     private CameraCaptureSession cameraCaptureSession;
 
     /** The queue into which all frames from the camera are placed as they become available.
-     * Frames which are not processed by the OpMode are automatically discarded. */
+     * Frames which are not processed by the OpMode are automatically discarded.
     private EvictingBlockingQueue<Bitmap> frameQueue;
 
-    /** State regarding where and how to save frames when the 'A' button is pressed. */
+    /** State regarding where and how to save frames when the 'A' button is pressed.
     private int captureCounter = 0;
     private File captureDirectory = AppUtil.ROBOT_DATA_DIR;
 
     /** A utility object that indicates where the asynchronous callbacks from the camera
      * infrastructure are to run. In this OpMode, that's all hidden from you (but see {@link #startCamera}
-     * if you're curious): no knowledge of multi-threading is needed here. */
+     * if you're curious): no knowledge of multi-threading is needed here.
     private Handler callbackHandler;
 
     //----------------------------------------------------------------------------------------------
@@ -110,7 +110,7 @@ public class TestVision extends LinearOpMode {
         }
     }
 
-    /** Do something with the frame */
+    /** Do something with the frame *
     private void onNewFrame(Bitmap frame) {
         saveBitmap(frame);
         frame.recycle(); // not strictly necessary, but helpful
@@ -122,7 +122,7 @@ public class TestVision extends LinearOpMode {
 
     private void initializeFrameQueue(int capacity) {
         /** The frame queue will automatically throw away bitmap frames if they are not processed
-         * quickly by the OpMode. This avoids a buildup of frames in memory */
+         * quickly by the OpMode. This avoids a buildup of frames in memory *
         frameQueue = new EvictingBlockingQueue<Bitmap>(new ArrayBlockingQueue<Bitmap>(capacity));
         frameQueue.setEvictAction(new Consumer<Bitmap>() {
             @Override public void accept(Bitmap frame) {
@@ -147,10 +147,10 @@ public class TestVision extends LinearOpMode {
 
         /** YUY2 is supported by all Webcams, per the USB Webcam standard: See "USB Device Class Definition
          * for Video Devices: Uncompressed Payload, Table 2-1". Further, often this is the *only*
-         * image format supported by a camera */
+         * image format supported by a camera *
         final int imageFormat = ImageFormat.YUY2;
 
-        /** Verify that the image is supported, and fetch size and desired frame rate if so */
+        /** Verify that the image is supported, and fetch size and desired frame rate if so *
         CameraCharacteristics cameraCharacteristics = cameraName.getCameraCharacteristics();
         if (!contains(cameraCharacteristics.getAndroidFormats(), imageFormat)) {
             error("image format not supported");
@@ -160,20 +160,20 @@ public class TestVision extends LinearOpMode {
         final int fps = cameraCharacteristics.getMaxFramesPerSecond(imageFormat, size);
 
         /** Some of the logic below runs asynchronously on other threads. Use of the synchronizer
-         * here allows us to wait in this method until all that asynchrony completes before returning. */
+         * here allows us to wait in this method until all that asynchrony completes before returning. *
         final ContinuationSynchronizer<CameraCaptureSession> synchronizer = new ContinuationSynchronizer<>();
         try {
-            /** Create a session in which requests to capture frames can be made */
+            /** Create a session in which requests to capture frames can be made *
             camera.createCaptureSession(Continuation.create(callbackHandler, new CameraCaptureSession.StateCallbackDefault() {
                 @Override public void onConfigured(@NonNull CameraCaptureSession session) {
                     try {
-                        /** The session is ready to go. Start requesting frames */
+                        /** The session is ready to go. Start requesting frames *
                         final CameraCaptureRequest captureRequest = camera.createCaptureRequest(imageFormat, size, fps);
                         session.startCapture(captureRequest,
                                 new CameraCaptureSession.CaptureCallback() {
                                     @Override public void onNewFrame(@NonNull CameraCaptureSession session, @NonNull CameraCaptureRequest request, @NonNull CameraFrame cameraFrame) {
                                         /** A new frame is available. The frame data has <em>not</em> been copied for us, and we can only access it
-                                         * for the duration of the callback. So we copy here manually. */
+                                         * for the duration of the callback. So we copy here manually. *
                                         Bitmap bmp = captureRequest.createEmptyBitmap();
                                         cameraFrame.copyToBitmap(bmp);
                                         frameQueue.offer(bmp);
@@ -200,14 +200,14 @@ public class TestVision extends LinearOpMode {
             synchronizer.finish(null);
         }
 
-        /** Wait for all the asynchrony to complete */
+        /** Wait for all the asynchrony to complete *
         try {
             synchronizer.await();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
 
-        /** Retrieve the created session. This will be null on error. */
+        /** Retrieve the created session. This will be null on error. *
         cameraCaptureSession = synchronizer.getValue();
     }
 
@@ -260,3 +260,4 @@ public class TestVision extends LinearOpMode {
         }
     }
 }
+**/
