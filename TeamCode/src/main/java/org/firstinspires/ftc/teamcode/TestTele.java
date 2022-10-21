@@ -38,6 +38,15 @@ public class TestTele extends LinearOpMode {
 
             //slow turning
 
+            //cc Servo
+
+            if(gamepad2.x) {
+                robot.cc.setPosition(0);
+            } else {
+                robot.cc.setPosition(0,377);
+
+            }
+
 
 
         }
