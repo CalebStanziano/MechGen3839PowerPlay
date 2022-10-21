@@ -3,6 +3,9 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+/**
+ * If you see this next meeting tell me:"I'm ready for OpenCv."
+ */
 public class Hardware {
 
     public DcMotor rf;
