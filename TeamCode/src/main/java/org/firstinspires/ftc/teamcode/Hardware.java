@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * If you see this next meeting tell me:"I'm ready for OpenCv."
@@ -12,6 +13,9 @@ public class Hardware {
     public DcMotor lf;
     public DcMotor rb;
     public DcMotor lb;
+
+    //Cone claw Servo
+    public Servo cc;
 
     public DcMotor liftMotor;
     private static Hardware myInstance = null;
@@ -60,5 +64,14 @@ public class Hardware {
         } catch (Exception p_exception) {
             lb = null;
         }
+
+        try {
+            cc = hwMap.get(Servo.class, "cc");
+        } catch ( Exception p_exception) {
+            cc = null;
+
+        }
+                     }
     }
-}
+
+
