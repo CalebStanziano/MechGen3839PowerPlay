@@ -51,14 +51,24 @@ public class TestTeleOp extends LinearOpMode {
 
 
             //slow turning
-            if (gamepad1.left_bumper){
+            if(gamepad1.left_bumper){
                 turning = -0.25;
                 //robot.setPower(-0.45, -0.45, 0.45, 0.45);
 
             }
-            if (gamepad1.right_bumper){
+            if(gamepad1.right_bumper){
                 turning = 0.25;
                 //robot.setPower(0.45, 0.45, -0.45, -0.45);
+
+
+            }
+
+            //cc Servo
+            if(gamepad2.x) {
+                robot.cc.setPosition(0);
+            }
+            if(!gamepad2.x) {
+                robot.cc.setPosition(0.377);
             }
         }
     }
