@@ -19,7 +19,7 @@ public class TestEncoders extends LinearOpMode {
             if(gamepad1.y && !yPressed){
                 yPressed = true;
                 position += 10;
-                robot.tm.setTargetPosition(position);
+                robot.lm.setTargetPosition(position);
             } else {
                 yPressed = false;
             }
@@ -27,7 +27,7 @@ public class TestEncoders extends LinearOpMode {
             if (gamepad1.a && !aPressed) {
                 aPressed = true;
                 position -= 10;
-                robot.tm.setTargetPosition(position);
+                robot.lm.setTargetPosition(position);
             } else {
                 aPressed = false;
             }
