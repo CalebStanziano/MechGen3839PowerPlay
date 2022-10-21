@@ -20,8 +20,8 @@ public class Hardware {
     public DcMotor rb;
     public DcMotor lb;
 
-    //Turret Motor
-    public DcMotor tm;
+    //Lift Motor
+    public DcMotor lm;
 
     //Lift Motor
     public DcMotor liftMotor;
@@ -88,12 +88,12 @@ public class Hardware {
         }
         //Turret Motor
         try {
-            tm = hwMap.get(DcMotor.class, "tm");
-            tm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            tm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            tm.setPower(0);
+            lm = hwMap.get(DcMotor.class, "tm");
+            lm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            lm.setPower(0);
         } catch (Exception p_exception) {
-            tm = null;
+            lm = null;
         }
         //Gyro
         try {
@@ -131,14 +131,16 @@ public class Hardware {
             lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
         }
     }
-    public void spinTurret (double x, double y){
-        if(x == 1){
-            tm.setTargetPosition(1);
+    //public void spinTurret (double x, double y){
+        /*if(x == 1){
+            lm.setTargetPosition(1);
         }
         if(x==2){
 
         }
     }
+    */
+         
 
 
 }
