@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * If you see this next meeting tell me:"I'm ready for OpenCv."
  */
+//I found this:)
 public class Hardware {
 
     public DcMotor rf;
