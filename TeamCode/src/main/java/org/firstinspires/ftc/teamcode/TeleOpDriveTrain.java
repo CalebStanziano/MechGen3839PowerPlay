@@ -90,10 +90,14 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 telemetry.update();
             }
             if(gamepad2.y){
-                robot.cc.setPosition(0.05);
+                robot.cc.setPosition(0);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
             }
+
+            //Lift Motor Positions
+            //0 = low, 1 = low junction, 2 = med junction, 3 = high junction
+
 
 
         }
