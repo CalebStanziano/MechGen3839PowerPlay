@@ -20,13 +20,13 @@ public class RedAuto extends LinearOpMode {
         runtime.reset();
 
         //forward
-        //forward(-24, 0.4);
+        forward(-24, 0.4);
 
         /* Possible auto (2 points)
-
-         */
-        turning(90);
+turning(90);
         forward(-36, 0.4);
+         */
+
 
 
 

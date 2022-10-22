@@ -23,10 +23,10 @@ public class AutoDriveTrain extends LinearOpMode {
         forward(-24, 0.4);
 
         /* Possible auto (2 points)
-
-         */
-        turning(-90);
+turning(-90);
         forward(-36, 0.4);
+         */
+
 
 
 

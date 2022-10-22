@@ -84,12 +84,12 @@ public class TeleOpDriveTrain extends LinearOpMode {
             } */
 
             //cc Way #2
-            if(gamepad1.a){
+            if(gamepad2.a){
                 robot.cc.setPosition(0.2);
                 telemetry.addData("Position", "open");
                 telemetry.update();
             }
-            if(gamepad1.y){
+            if(gamepad2.y){
                 robot.cc.setPosition(0.05);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
