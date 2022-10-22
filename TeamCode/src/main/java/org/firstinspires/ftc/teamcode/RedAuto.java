@@ -1,54 +1,34 @@
-/**package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
-//import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-//import org.openftc.easyopencv.OpenCvCamera;
-//import org.openftc.easyopencv.OpenCvCameraFactory;
-//import org.openftc.easyopencv.OpenCvCameraRotation;
-
-@Autonomous (name = "Vision Auto")
-public class VisionAuto extends LinearOpMode {
-    OpenCvCamera webCam;
-    private ConePipeline detector;
-    private String position = "LEFT";
+@Autonomous (name = "Red Auto")
+public class RedAuto extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
     private ElapsedTime runtime = new ElapsedTime();
 
-    public void runOpMode(){
+
+    public void runOpMode() {
         robot.init(hardwareMap);
-        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(  "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        detector = new ConePipeline();
-        webCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "wc1"),cameraMonitorViewId);
-        webCam.openCameraDevice();
-        FtcDashboard.getInstance().startCameraStream(webCam, 0);
-        webCam.setPipeline(detector);
-        webCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
 
-        while (!isStarted()){
-            position = detector.position;
-            telemetry.addData("position", position);
-        }
-        /**add code here **
+        waitForStart();
+        runtime.reset();
 
-        /*if(position.equals("LEFT")){
-            robot.alsf.setTargetPosition(-480);
-            robot.cS.setPosition(.65);
-        }
-        if(position.equals("CENTER")){
-            robot.alsf.setTargetPosition(-1330);
-            robot.cS.setPosition(.65);
-        }
-        if(position.equals("RIGHT")){
-            robot.alsf.setTargetPosition(-1910);
-            robot.cS.setPosition(.65);
-        }
-        //forward(1, 1)
-         *
+        //forward
+        //forward(-24, 0.4);
+
+        /* Possible auto (2 points)
+
+         */
+        turning(90);
+        forward(-36, 0.4);
+
+
 
     }
     public void forward(double distanceMoving, double speedMoving) {
@@ -73,7 +53,7 @@ public class VisionAuto extends LinearOpMode {
         robot.rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        robot.setPower(speedMoving, speedMoving, speedMoving, speedMoving);
+        robot.setPower(-speedMoving, -speedMoving, -speedMoving, -speedMoving);
 
         while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
 
@@ -87,7 +67,7 @@ public class VisionAuto extends LinearOpMode {
     }
 
 
-    public void diagonal(double distance, double speed, String direction){
+    public void diagonal (double distance, double speed, String direction){
         double wheelCircumference = 4 * Math.PI;
         double wheelMotor = 560;
         double ticks = (distance * (wheelMotor / wheelCircumference));
@@ -218,7 +198,7 @@ public class VisionAuto extends LinearOpMode {
         }
     }
 
-    public void turning(double degrees) {
+    public void turning (double degrees) {
 
         robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rb.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -261,4 +241,5 @@ public class VisionAuto extends LinearOpMode {
         robot.setPower(0,0,0,0);
     }
 }
-**/
+
+

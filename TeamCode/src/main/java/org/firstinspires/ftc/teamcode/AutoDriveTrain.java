@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous (name = "Drive Train Auto")
+@Autonomous (name = "Drive Train Auto Blue")
 public class AutoDriveTrain extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
     private ElapsedTime runtime = new ElapsedTime();
@@ -20,11 +20,13 @@ public class AutoDriveTrain extends LinearOpMode {
         runtime.reset();
 
         //forward
-        forward(400, 0.5);
-        
+        forward(-24, 0.4);
 
-        //stop
-        robot.setPower(0,0,0,0);
+        /* Possible auto (2 points)
+
+         */
+        turning(-90);
+        forward(-36, 0.4);
 
 
 
@@ -51,7 +53,7 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.rb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lb.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        robot.setPower(speedMoving, speedMoving, speedMoving, speedMoving);
+        robot.setPower(-speedMoving, -speedMoving, -speedMoving, -speedMoving);
 
         while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
 

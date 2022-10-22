@@ -70,7 +70,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
             //Turret Motor
 
             //Cone Claw
-            if (gamepad2.x && !xPressed) {
+            /*if (gamepad2.x && !xPressed) {
                 xPressed = true;
                 if (xKey) {
                     robot.cc.setPosition(0.377);
@@ -81,11 +81,18 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 }
             } else {
                 xPressed = false;
-            }
+            } */
 
             //cc Way #2
             if(gamepad1.a){
-                robot.cc.setPosition(0.377);
+                robot.cc.setPosition(0.2);
+                telemetry.addData("Position", "open");
+                telemetry.update();
+            }
+            if(gamepad1.y){
+                robot.cc.setPosition(0.05);
+                telemetry.addData("Position", "closed");
+                telemetry.update();
             }
 
 
