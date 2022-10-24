@@ -90,7 +90,7 @@ public class Hardware {
         try {
             lm = hwMap.get(DcMotor.class, "tm");
             lm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            lm.setMode(DcMotor.RunMode.RUN _USING_ENCODER);
+            lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             lm.setPower(0);
         } catch (Exception p_exception) {
             lm = null;
