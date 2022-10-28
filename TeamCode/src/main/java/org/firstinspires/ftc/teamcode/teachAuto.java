@@ -13,7 +13,7 @@ public class teachAuto extends LinearOpMode {
         robot.init(hardwareMap);
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        double timer = runtime.seconds();
+        
         waitForStart();
         runtime.reset();
 
