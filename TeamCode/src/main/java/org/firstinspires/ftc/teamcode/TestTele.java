@@ -37,7 +37,7 @@ public class TestTele extends LinearOpMode {
             if(gamepad2.x){
                 robot.cc.setPosition(0);
             } else {
-                robot.cc.setPosition(0.377);
+                robot.cc.setPosition(0.3);
             }
 
         }
