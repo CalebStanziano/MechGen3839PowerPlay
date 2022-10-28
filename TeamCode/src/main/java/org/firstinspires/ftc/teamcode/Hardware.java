@@ -86,7 +86,7 @@ public class Hardware {
         } catch (Exception p_exception) {
             lb = null;
         }
-        //Turret Motor
+        //Lift Motor
         try {
             lm = hwMap.get(DcMotor.class, "tm");
             lm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
