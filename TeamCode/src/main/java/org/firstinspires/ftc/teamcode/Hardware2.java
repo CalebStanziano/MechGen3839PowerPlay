@@ -23,7 +23,7 @@ public class Hardware2 {
         }
         return myInstance;
     }
-    public double maxSpeed =0.5;
+    public double maxSpeed = 0.5;
     public void init(HardwareMap hwMap){
         //Right Front Motor
         try{
