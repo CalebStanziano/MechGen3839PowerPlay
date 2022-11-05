@@ -1,21 +1,21 @@
-/**package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 //import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-//import org.openftc.easyopencv.OpenCvCamera;
-//import org.openftc.easyopencv.OpenCvCameraFactory;
-//import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+
 
 @Autonomous (name = "Vision Auto")
 public class VisionAuto extends LinearOpMode {
     OpenCvCamera webCam;
     private ConePipeline detector;
-    private String position = "LEFT";
+    private String position = "BLUE";
     Hardware robot = Hardware.getInstance();
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -25,7 +25,7 @@ public class VisionAuto extends LinearOpMode {
         detector = new ConePipeline();
         webCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "wc1"),cameraMonitorViewId);
         webCam.openCameraDevice();
-        FtcDashboard.getInstance().startCameraStream(webCam, 0);
+        //FtcDashboard.getInstance().startCameraStream(webCam, 0);
         webCam.setPipeline(detector);
         webCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
 
@@ -33,22 +33,19 @@ public class VisionAuto extends LinearOpMode {
             position = detector.position;
             telemetry.addData("position", position);
         }
-        /**add code here **
+        /**add code here **/
 
-        /*if(position.equals("LEFT")){
-            robot.alsf.setTargetPosition(-480);
-            robot.cS.setPosition(.65);
+        if(position.equals("BLUE")){
+
         }
-        if(position.equals("CENTER")){
-            robot.alsf.setTargetPosition(-1330);
-            robot.cS.setPosition(.65);
+        if(position.equals("GREEN")){
+
         }
-        if(position.equals("RIGHT")){
-            robot.alsf.setTargetPosition(-1910);
-            robot.cS.setPosition(.65);
+        if(position.equals("RED")){
+
         }
-        //forward(1, 1)
-         *
+
+
 
     }
     public void forward(double distanceMoving, double speedMoving) {
@@ -261,4 +258,3 @@ public class VisionAuto extends LinearOpMode {
         robot.setPower(0,0,0,0);
     }
 }
-**/
