@@ -10,7 +10,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 public class ConePipeline extends OpenCvPipeline {
     private Mat workingMatrix = new Mat();
-    public String position = "BLUE";
+    public String position = "PURPLE";
 
     public ConePipeline(){
 
@@ -34,13 +34,13 @@ public class ConePipeline extends OpenCvPipeline {
         //Blue = 200 Red = 100 Green = 0 These are fake numbers
         /**CHANGE LATER!**/
         if(centerTotal > 100){
-            position = "BLUE";
+            position = "PURPLE";
         }
         if(centerTotal < 100){
             position = "GREEN";
         }
         if(centerTotal > 0 && centerTotal < 200 ){
-            position = "RED";
+            position = "YELLOW";
         }
 
         return workingMatrix;
