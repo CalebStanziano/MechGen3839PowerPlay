@@ -4,6 +4,7 @@ repositories {
     flatDir {
         dirs rootProject.file('libs')
     }
+    maven { url = 'https://maven.brott.dev/' }
 }
 
 dependencies {
@@ -21,6 +22,9 @@ dependencies {
     //Open CV:
     implementation 'org.openftc:easyopencv:1.5.2'
     implementation 'org.openftc:opencv-repackaged:4.5.3-B'
+    implementation('com.acmerobotics.dashboard:dashboard:0.4.6') {
+        exclude group: 'org.firstinspires.ftc'
+    }
 
 }
 
