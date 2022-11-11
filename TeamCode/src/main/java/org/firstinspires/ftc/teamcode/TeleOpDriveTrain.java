@@ -87,13 +87,13 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 robot.lm.setTargetPosition(0);
             }
             if(gamepad2.dpad_left){
-
+                robot.lm.setTargetPosition(10);
             }
             if(gamepad2.dpad_up){
-
+                robot.lm.setTargetPosition(20);
             }
             if(gamepad2.dpad_right){
-                
+                robot.lm.setTargetPosition(30);
             }
 
 

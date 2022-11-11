@@ -88,7 +88,7 @@ public class Hardware {
         }
         //Lift Motor
         try {
-            lm = hwMap.get(DcMotor.class, "tm");
+            lm = hwMap.get(DcMotor.class, "lm");
             lm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             lm.setPower(0);
