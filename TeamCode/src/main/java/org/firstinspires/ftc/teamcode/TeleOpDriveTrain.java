@@ -83,7 +83,18 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
-            robot.lm.setPower(gamepad2.left_stick_y);
+            if(gamepad2.dpad_down) {
+                robot.lm.setTargetPosition(0);
+            }
+            if(gamepad2.dpad_left){
+
+            }
+            if(gamepad2.dpad_up){
+
+            }
+            if(gamepad2.dpad_right){
+                
+            }
 
 
         }
