@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-//import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -25,13 +25,14 @@ public class VisionAuto extends LinearOpMode {
         detector = new ConePipeline();
         webCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "wc1"),cameraMonitorViewId);
         webCam.openCameraDevice();
-        //FtcDashboard.getInstance().startCameraStream(webCam, 0);
+        FtcDashboard.getInstance().startCameraStream(webCam, 0);
         webCam.setPipeline(detector);
         webCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_RIGHT);
 
         while (!isStarted()){
             position = detector.position;
             telemetry.addData("position", position);
+
         }
         /**add code here **/
 
