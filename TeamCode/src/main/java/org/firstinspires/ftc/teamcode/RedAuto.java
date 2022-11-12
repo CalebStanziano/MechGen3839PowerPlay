@@ -18,6 +18,7 @@ public class RedAuto extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
+        robot.cc.setPosition(0.1);
 
         //forward
         forward(-24, 0.4);

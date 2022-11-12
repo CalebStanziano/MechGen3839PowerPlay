@@ -58,8 +58,8 @@ public class TeleOpDriveTrain extends LinearOpMode {
                         forward - strafing + turning);
             } else {
                 double scaleFactor = max / robot.maxSpeed;
-                robot.setPower(forward - strafing - turning * scaleFactor, forward + strafing - turning * scaleFactor,
-                        forward + strafing + turning * scaleFactor, forward - strafing + turning * scaleFactor);
+                robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor,
+                        (forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
             }
 
             //Precision turning
