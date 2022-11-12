@@ -107,6 +107,10 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 robot.lm.setPower(1);
             }
 
+            if(gamepad2.left_bumper){
+                robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            }
+
 
         }
 
