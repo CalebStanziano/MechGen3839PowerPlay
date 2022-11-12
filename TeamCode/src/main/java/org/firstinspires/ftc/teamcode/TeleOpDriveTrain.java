@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 @TeleOp (name = "DriveTrainTeleOp")
@@ -18,6 +19,8 @@ public class TeleOpDriveTrain extends LinearOpMode {
         waitForStart();
         boolean xKey = true;
         boolean xPressed = false;
+        robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         while (opModeIsActive()){
             double forward;
@@ -76,7 +79,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 telemetry.update();
             }
             if(gamepad2.y){
-                robot.cc.setPosition(0);
+                robot.cc.setPosition(0.1);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
             }
@@ -84,16 +87,24 @@ public class TeleOpDriveTrain extends LinearOpMode {
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
             if(gamepad2.dpad_down) {
-                robot.lm.setTargetPosition(0);
+                robot.lm.setTargetPosition(50);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(1);
             }
             if(gamepad2.dpad_left){
-                robot.lm.setTargetPosition(10);
+                robot.lm.setTargetPosition(5300);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(1);
             }
             if(gamepad2.dpad_up){
-                robot.lm.setTargetPosition(20);
+                robot.lm.setTargetPosition(8920);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(1);
             }
             if(gamepad2.dpad_right){
-                robot.lm.setTargetPosition(30);
+                robot.lm.setTargetPosition(10140);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(1);
             }
 
 

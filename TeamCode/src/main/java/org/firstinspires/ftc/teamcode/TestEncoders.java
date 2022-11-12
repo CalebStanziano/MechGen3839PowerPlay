@@ -22,19 +22,21 @@ public class TestEncoders extends LinearOpMode {
 
             //y to increase
             if(gamepad1.y){
-                position += 1;
+                position += 20;
                 robot.lm.setTargetPosition(position);
                 telemetry.addData("Position", position);
                 telemetry.update();
                 robot.cc.setPosition(.1);
-                robot.lm.setPower(.04);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(.1);
             }
             if(gamepad1.a){
-                position -= 1;
+                position -= 20;
                 robot.lm.setTargetPosition(position);
                 telemetry.addData("Position", position);
                 telemetry.update();
-                robot.lm.setPower(-.04);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(-.1);
             }
 
            /* if(gamepad1.y && !yPressed){

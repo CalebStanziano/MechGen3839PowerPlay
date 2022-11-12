@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.opencv.core.Core;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -31,16 +32,18 @@ public class VisionAuto extends LinearOpMode {
 
         while (!isStarted()){
             position = detector.position;
-            telemetry.addData("position", position);
+            telemetry.addData("position", detector.workingMatrix);
+            telemetry.update();
 
         }
         /**add code here **/
-
+        telemetry.addData("position", detector.workingMatrix);
+        telemetry.update();
         if(position.equals("PURPLE")){
-
+            forward(-4, 0.1);
         }
         if(position.equals("GREEN")){
-
+            robot.cc.setPosition(0.3);
         }
         if(position.equals("YELLOW")){
 
