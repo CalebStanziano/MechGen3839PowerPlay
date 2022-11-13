@@ -38,7 +38,7 @@ public class TestTeleOp extends LinearOpMode {
             }
             //strafing
             double max = Math.max(Math.abs(forward - turning - strafing), Math.max(Math.abs(forward + strafing - turning),
-                Math.max(Math.abs(forward + strafing + turning), Math.max(Math.abs(forward - strafing + turning))));
+                Math.max(Math.abs(forward + strafing + turning), Math.abs(forward - strafing + turning))));
             if(max < robot.maxSpeed){
                 robot.setPower(forward - strafing - turning, forward + strafing - turning, forward + strafing + turning,
                         forward - strafing + turning);

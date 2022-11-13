@@ -10,6 +10,21 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
     Hardware robot = Hardware.getInstance();
 
+    /*
+     * https://www.chiefdelphi.com/t/controller-response-curve-approaches/161199
+     */
+    double sCurve(double joyValue){
+        if(Math.abs(joyValue) < 10e-5){
+            return 0;
+        }
+        if(joyValue > 0){
+            return 0.08 + Math.pow(joyValue - 0.03, 3);
+        }
+        //if(joyValue < 0){
+            return -0.11 + Math.pow(joyValue + 0.04, 3);
+        //}
+
+    }
     @Override
     public void runOpMode() throws InterruptedException{
         robot.init(hardwareMap);
@@ -30,9 +45,9 @@ public class TeleOpDriveTrain extends LinearOpMode {
             double spinTurretY;
 
 
-            forward = gamepad1.left_stick_y;
-            turning  = -gamepad1.right_stick_x;
-            strafing = -gamepad1.left_stick_x;
+            forward = sCurve(gamepad1.left_stick_y);
+            turning  = sCurve(-gamepad1.right_stick_x);
+            strafing = sCurve(-gamepad1.left_stick_x);
             spinTurretX = gamepad2.right_stick_x;
             spinTurretY = gamepad2.right_stick_y;
 
@@ -51,15 +66,23 @@ public class TeleOpDriveTrain extends LinearOpMode {
             }
 
             //Strafing
-            double max = Math.max(Math.abs(forward - strafing - turning), Math.max(Math.abs(forward + strafing - turning),
-                    Math.max(Math.abs(forward + strafing + turning), Math.abs(forward - strafing + turning))));
+            double fr = forward - strafing - turning;
+            double br = forward + strafing - turning;
+            double fl = forward + strafing + turning;
+            double bl = forward - strafing + turning;
+
+
+            double max = Math.max(Math.abs(fr),
+                    Math.max(Math.abs(br),
+                    Math.max(Math.abs(fl),
+                            Math.abs(bl))));
+
             if(max <  robot.maxSpeed){
-                robot.setPower(forward - strafing - turning, forward + strafing - turning, forward + strafing + turning,
-                        forward - strafing + turning);
+                robot.setPower(fr, br, fl, bl);
             } else {
                 double scaleFactor = max / robot.maxSpeed;
-                robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor,
-                        (forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
+                robot.setPower(fr * scaleFactor, br * scaleFactor,
+                        fl * scaleFactor, bl * scaleFactor);
             }
 
             //Precision turning
@@ -114,11 +137,11 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
         }
 
-        /**Turret Motor Spin
+        /*Turret Motor Spin
         public void spinTurret() {
             if (gamepad2.right_stick_x = 1) {
             robot.tm.setPower();
             }
-        } **/
+        } */
     }
 }
