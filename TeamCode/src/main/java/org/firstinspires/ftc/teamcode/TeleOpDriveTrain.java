@@ -28,6 +28,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
             double turning;
             double spinTurretX;
             double spinTurretY;
+            int position = 0;
 
 
             forward = gamepad1.left_stick_y;
@@ -79,7 +80,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 telemetry.update();
             }
             if(gamepad2.y){
-                robot.cc.setPosition(0.1);
+                robot.cc.setPosition(0);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
             }
@@ -87,7 +88,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
             if(gamepad2.dpad_down) {
-                robot.lm.setTargetPosition(50);
+                robot.lm.setTargetPosition(0);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
@@ -110,6 +111,13 @@ public class TeleOpDriveTrain extends LinearOpMode {
             if(gamepad2.left_bumper){
                 robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
+
+            if(gamepad2.b){
+                robot.lm.setTargetPosition(1020);
+                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                robot.lm.setPower(1);
+            }
+
 
 
         }

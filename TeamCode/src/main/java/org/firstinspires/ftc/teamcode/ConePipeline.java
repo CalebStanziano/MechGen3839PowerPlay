@@ -33,13 +33,13 @@ public class ConePipeline extends OpenCvPipeline {
         //logic here:
         //Blue = 200 Red = 100 Green = 0 These are fake numbers
         /**CHANGE LATER!**/
-        if(centerTotal >= 10){
+        if(centerTotal >= 100){
             position = "PURPLE";
         }
-        if(centerTotal < 10){
+        if(centerTotal < 100){
             position = "GREEN";
         }
-        if(centerTotal > 0 && centerTotal < 10 ){
+        if(centerTotal > 0 && centerTotal < 100 ){
             position = "YELLOW";
         }
 

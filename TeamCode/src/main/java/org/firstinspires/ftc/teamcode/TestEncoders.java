@@ -26,7 +26,6 @@ public class TestEncoders extends LinearOpMode {
                 robot.lm.setTargetPosition(position);
                 telemetry.addData("Position", position);
                 telemetry.update();
-                robot.cc.setPosition(.1);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(.1);
             }
