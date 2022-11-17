@@ -21,7 +21,7 @@ public class AutoDriveTrain extends LinearOpMode {
 
         //forward
         forward(-48, 0.4);
-        turning(90);
+        turning(-90);
         forward(-20, 0.4);
         robot.lm.setTargetPosition(2000);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -43,7 +43,6 @@ turning(-90);
 
 
 
-
     }
     public void forward(double distanceMoving, double speedMoving) {
 
@@ -51,6 +50,12 @@ turning(-90);
         double wheelMotor = 560;
         double ticks = (distanceMoving * (wheelMotor / wheelCircumference));
         robot.setPower(0, 0, 0, 0);
+        int startPosRf = robot.rf.getCurrentPosition();
+        int startPosRb = robot.rb.getCurrentPosition();
+        int startPosLf = robot.lf.getCurrentPosition();
+        int startPosLb = robot.rf.getCurrentPosition();
+
+
 
         robot.rf.setTargetPosition((int) Math.round(ticks));
         robot.lf.setTargetPosition((int) Math.round(ticks));
@@ -69,8 +74,9 @@ turning(-90);
 
         robot.setPower(-speedMoving, -speedMoving, -speedMoving, -speedMoving);
 
-        while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+        while(opModeIsActive() && (robot.rf.isBusy())){
+            double robotPos = robot.rf.getCurrentPosition();
+            telemetry.addData("Position of Bot:", robotPos );
         }
         robot.setPower(0,0,0,0);
 
