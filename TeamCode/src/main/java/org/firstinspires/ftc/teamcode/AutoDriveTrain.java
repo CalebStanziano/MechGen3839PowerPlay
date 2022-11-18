@@ -113,8 +113,9 @@ turning(-90);
             //robot.rf.setPower(speed);
             //robot.lb.setPower(speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
             robot.setPower(0,0,0,0);
 
@@ -144,9 +145,11 @@ turning(-90);
             //robot.rb.setPower(-speed);
             //robot.lf.setPower(-speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
+
             robot.setPower(0,0,0,0);
 
             robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -175,9 +178,11 @@ turning(-90);
             //robot.rb.setPower(speed);
             //robot.lf.setPower(speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
+
             robot.setPower(0,0,0,0);
 
             robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -206,9 +211,11 @@ turning(-90);
             //robot.rf.setPower(-speed);
             //robot.lb.setPower(-speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
+            
             robot.setPower(0,0,0,0);
 
             robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -219,6 +226,11 @@ turning(-90);
     }
 
     public void turning (double degrees) {
+
+        robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rb.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
