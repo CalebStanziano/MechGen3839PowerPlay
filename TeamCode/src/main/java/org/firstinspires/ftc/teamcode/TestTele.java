@@ -31,13 +31,21 @@ public class TestTele extends LinearOpMode {
             if(gamepad1.dpad_up){
                 forward = -.25;
             }
-<<<<<<< Updated upstream
+            if(gamepad1.dpad_down){
+                forward = .25;
+            }
+            if(gamepad1.dpad_left){
+                strafing = -.25;
+            }
+            if(gamepad1.dpad_right){
+                strafing = .25;
+            }
 
 
             //strafing
 
 
-=======
+
             
             //Strafing
             double max = Math.max(Math.abs(forward - strafing - turning), Math.max(Math.abs(forward + strafing - turning),
@@ -50,7 +58,7 @@ public class TestTele extends LinearOpMode {
                 robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor,
                         (forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
             }
->>>>>>> Stashed changes
+
             //slow turning
 
             //cc Servo

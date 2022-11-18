@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 /**
  * If you see this next meeting tell me:"I'm ready for OpenCv."
@@ -71,8 +72,24 @@ public class Hardware {
         } catch ( Exception p_exception) {
             cc = null;
 
+
         }
                      }
+                     public void setPower(double fr, double br ,double fl, double bl) {
+                          if (rf!= null) {
+                              rf.setPower(Range.clip(fr,-maxSpeed,maxSpeed));
+                          }
+                         if (lf!= null) {
+                             lf.setPower(Range.clip(fl,-maxSpeed,maxSpeed));
+                         }
+                         if (rb!= null) {
+                             rb.setPower(Range.clip(br,-maxSpeed,maxSpeed));
+                         }
+                         if (lb!= null) {
+                             lb.setPower(Range.clip(bl,-maxSpeed,maxSpeed));
+                         }
+                     }
+
     }
 
 
