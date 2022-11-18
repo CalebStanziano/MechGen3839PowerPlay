@@ -76,8 +76,9 @@ public class VisionAuto extends LinearOpMode {
 
         robot.setPower(speedMoving, speedMoving, speedMoving, speedMoving);
 
-        while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+        while(opModeIsActive() && robot.rf.isBusy()){
+            telemetry.addData("Position", ticks);
+            telemetry.update();
         }
         robot.setPower(0,0,0,0);
 
@@ -114,8 +115,9 @@ public class VisionAuto extends LinearOpMode {
             //robot.rf.setPower(speed);
             //robot.lb.setPower(speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && robot.rf.isBusy()){
+                telemetry.addData("Position", ticks);
+                telemetry.update();
             }
             robot.setPower(0,0,0,0);
 
@@ -220,6 +222,11 @@ public class VisionAuto extends LinearOpMode {
     }
 
     public void turning(double degrees) {
+
+        robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rb.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
