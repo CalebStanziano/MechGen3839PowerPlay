@@ -50,10 +50,15 @@ turning(-90);
         double wheelMotor = 560;
         double ticks = (distanceMoving * (wheelMotor / wheelCircumference));
         robot.setPower(0, 0, 0, 0);
-        int startPosRf = robot.rf.getCurrentPosition();
-        int startPosRb = robot.rb.getCurrentPosition();
-        int startPosLf = robot.lf.getCurrentPosition();
-        int startPosLb = robot.rf.getCurrentPosition();
+        double startPosRf = robot.rf.getCurrentPosition();
+        double startPosRb = robot.rb.getCurrentPosition();
+        double startPosLf = robot.lf.getCurrentPosition();
+        double startPosLb = robot.rf.getCurrentPosition();
+
+        double PosRf = Math.abs(startPosRf - Math.round(startPosRf));
+        double PosRb = Math.abs(startPosRb - Math.round(startPosRb));
+        double PosLf = Math.abs(startPosLf - Math.round(startPosLf));
+        double PosLb = Math.abs(startPosLb - Math.round(startPosLb));
 
 
 
