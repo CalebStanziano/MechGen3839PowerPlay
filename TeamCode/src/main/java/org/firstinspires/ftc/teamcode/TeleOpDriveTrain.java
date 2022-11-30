@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-@TeleOp (name = "DriveTrainTeleOp")
+@TeleOp (name = "Main TeleOp")
 public class TeleOpDriveTrain extends LinearOpMode {
 
     Hardware robot = Hardware.getInstance();
@@ -19,6 +19,12 @@ public class TeleOpDriveTrain extends LinearOpMode {
         waitForStart();
         boolean xKey = true;
         boolean xPressed = false;
+
+        robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        robot.lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
         robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -87,31 +93,38 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
+            //pick-up junction
             if(gamepad2.dpad_down) {
                 robot.lm.setTargetPosition(0);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
+            //low junction
             if(gamepad2.dpad_left){
                 robot.lm.setTargetPosition(2060);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
+            //mid. junction
             if(gamepad2.dpad_up){
                 robot.lm.setTargetPosition(4980);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
+
+            //high junction
             if(gamepad2.dpad_right){
                 robot.lm.setTargetPosition(10140);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
 
-            if(gamepad2.left_bumper){
+            /*if(gamepad2.left_bumper){
                 robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             }
+            */
 
+            //ground junction.
             if(gamepad2.b){
                 robot.lm.setTargetPosition(1020);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);

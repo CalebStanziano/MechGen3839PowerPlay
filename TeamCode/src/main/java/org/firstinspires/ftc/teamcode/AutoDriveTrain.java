@@ -15,13 +15,14 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.init(hardwareMap);
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+        int botPosition = 0;
 
         waitForStart();
         runtime.reset();
 
         //forward
         forward(-48, 0.4);
-        turning(-90);
+        turning(270);
         forward(-20, 0.4);
         robot.lm.setTargetPosition(2000);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -85,10 +86,7 @@ turning(-90);
         }
         robot.setPower(0,0,0,0);
 
-        robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        robot.lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
     }
 
 
