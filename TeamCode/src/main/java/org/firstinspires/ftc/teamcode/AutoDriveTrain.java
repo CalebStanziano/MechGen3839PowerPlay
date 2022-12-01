@@ -21,7 +21,7 @@ public class AutoDriveTrain extends LinearOpMode {
         runtime.reset();
 
         //forward
-        forward(-48, 0.4);
+        forward(-50, 0.4);
         turning(270);
         forward(-20, 0.4);
         robot.lm.setTargetPosition(2000);
