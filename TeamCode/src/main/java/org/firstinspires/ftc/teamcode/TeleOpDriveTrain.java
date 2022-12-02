@@ -93,7 +93,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
-            //pick-up junction
+            //pick-up
             if(gamepad2.dpad_down) {
                 robot.lm.setTargetPosition(0);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);

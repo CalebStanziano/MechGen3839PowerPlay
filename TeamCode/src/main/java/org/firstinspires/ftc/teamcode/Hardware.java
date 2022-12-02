@@ -28,6 +28,7 @@ public class Hardware {
 
     //Cone Claw servo
     public Servo cc;
+    public Servo cc2;
 
 
     public BNO055IMU gyro;
@@ -114,6 +115,12 @@ public class Hardware {
             cc = hwMap.get(Servo.class, "cc");
         } catch( Exception p_exception){
             cc = null;
+        }
+
+        try {
+            cc2 = hwMap.get(Servo.class, "cc2");
+        } catch( Exception p_exception){
+            cc2 = null;
         }
     }
 
