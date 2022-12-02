@@ -6,7 +6,7 @@
 
 buildscript {
     repositories {
-        mavenCentral()
+        //mavenCentral()
         google()
     }
     dependencies {
@@ -18,13 +18,13 @@ buildscript {
 // google() repository beginning with version 3.2 of the Android Gradle Plugin
 allprojects {
     repositories {
-        mavenCentral()
+        //mavenCentral()
         google()
     }
 }
 
 repositories {
-    mavenCentral()
+    //mavenCentral()
 
     flatDir {
         dirs '../libs'
