@@ -101,20 +101,20 @@ public class TeleOpDriveTrain extends LinearOpMode {
             }
             //low junction
             if(gamepad2.dpad_left){
-                robot.lm.setTargetPosition(2060);
+                robot.lm.setTargetPosition(2120);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
             //mid. junction
             if(gamepad2.dpad_up){
-                robot.lm.setTargetPosition(4980);
+                robot.lm.setTargetPosition(3180);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
 
             //high junction
             if(gamepad2.dpad_right){
-                robot.lm.setTargetPosition(10140);
+                robot.lm.setTargetPosition(4390);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
@@ -126,7 +126,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             //ground junction.
             if(gamepad2.b){
-                robot.lm.setTargetPosition(1020);
+                robot.lm.setTargetPosition(60);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }

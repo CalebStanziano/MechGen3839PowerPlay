@@ -16,6 +16,7 @@ public class AutoDriveTrain extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         int botPosition = 0;
+        int stackPos = 2000;
 
         waitForStart();
         runtime.reset();
@@ -24,9 +25,10 @@ public class AutoDriveTrain extends LinearOpMode {
         forward(-50, 0.4);
         turning(270);
         forward(-20, 0.4);
-        robot.lm.setTargetPosition(2000);
+        robot.lm.setTargetPosition(stackPos);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
+        stackPos -=1000;
         robot.cc.setPosition(0.3);
         forward(-4, 0.4);
         robot.cc.setPosition(0);
@@ -36,6 +38,9 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.lm.setPower(1);
         turning(23);
         robot.cc.setPosition(0.3);
+        robot.lm.setTargetPosition(0);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
 
         /* Possible auto (2 points)
 turning(-90);
