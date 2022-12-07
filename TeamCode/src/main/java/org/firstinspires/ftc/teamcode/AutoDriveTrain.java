@@ -33,7 +33,7 @@ public class AutoDriveTrain extends LinearOpMode {
         forward(-4, 0.4);
         robot.cc.setPosition(0);
         forward(48, 0.4);
-        robot.lm.setTargetPosition(8920);
+        robot.lm.setTargetPosition(4470);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         turning(23);
