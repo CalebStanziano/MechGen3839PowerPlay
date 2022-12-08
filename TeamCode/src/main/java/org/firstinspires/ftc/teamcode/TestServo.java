@@ -17,7 +17,8 @@ public class TestServo extends LinearOpMode {
         boolean yPressed = false;
 
         robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER)
+        robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         while(opModeIsActive()){
             //y to increase
