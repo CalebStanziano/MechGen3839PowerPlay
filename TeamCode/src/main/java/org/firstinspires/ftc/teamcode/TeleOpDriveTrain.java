@@ -114,35 +114,18 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
-
             //high junction
             if(gamepad2.dpad_right){
                 robot.lm.setTargetPosition(4470);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
-
-            /*if(gamepad2.left_bumper){
-                robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            }
-            */
-
             //ground junction.
             if(gamepad2.b){
                 robot.lm.setTargetPosition(1070);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
-
-
-
         }
-
-        /**Turret Motor Spin
-        public void spinTurret() {
-            if (gamepad2.right_stick_x = 1) {
-            robot.tm.setPower();
-            }
-        } **/
     }
 }
