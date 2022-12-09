@@ -83,13 +83,13 @@ public class TeleOpDriveTrain extends LinearOpMode {
             //Cone Claw
             if(gamepad2.a){
                 robot.cc.setPosition(1);
-                robot.cc2.setPosition(0);
+                //robot.cc2.setPosition(0);
                 telemetry.addData("Position", "open");
                 telemetry.update();
             }
             if(gamepad2.y){
                 robot.cc.setPosition(0);
-                robot.cc2.setPosition(1);
+                //robot.cc2.setPosition(1);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
             }
@@ -104,19 +104,19 @@ public class TeleOpDriveTrain extends LinearOpMode {
             }
             //low junction
             if(gamepad2.dpad_left){
-                robot.lm.setTargetPosition(2600);
+                robot.lm.setTargetPosition(2240);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
             //mid. junction
             if(gamepad2.dpad_up){
-                robot.lm.setTargetPosition(3380);
+                robot.lm.setTargetPosition(3200);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
             //high junction
             if(gamepad2.dpad_right){
-                robot.lm.setTargetPosition(4470);
+                robot.lm.setTargetPosition(4950);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
@@ -126,6 +126,24 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
+
+            //reset encoders
+            if(gamepad2.left_bumper && gamepad2.right_bumper){
+                encoderReset();
+                //telemetry.addData("Encoders", "reset");
+                //telemetry.update();
+
+            }
         }
+    }
+    public void encoderReset(){
+        int currentPos = robot.lm.getCurrentPosition();
+        telemetry.addData("position", currentPos);
+        telemetry.update();
+        robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.lm.setTargetPosition(0);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
     }
 }
