@@ -16,31 +16,86 @@ public class AutoDriveTrain extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         int botPosition = 0;
-        int stackPos = 2000;
+        robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //stackPos depreciates as the cycle continues.
+        int stackPos = 1100;
 
         waitForStart();
         runtime.reset();
 
+
+        //open claw
+        robot.cc.setPosition(1);
+        robot.cc2.setPosition(0);
         //forward
-        forward(-50, 0.4);
-        turning(270);
-        forward(-20, 0.4);
+        forward(-55, 0.4);
+        forward(5, 0.4);
+        //close claw
+        robot.cc.setPosition(0);
+        robot.cc2.setPosition(1);
+
+        turning(280);
+
+        forward(-14.35, 0.4);
+        //close claw
+        robot.cc.setPosition(0);
+        robot.cc2.setPosition(1);
+        //move lift motor to stackPos
         robot.lm.setTargetPosition(stackPos);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
-        stackPos -=1000;
-        robot.cc.setPosition(0.3);
-        forward(-4, 0.4);
+        stackPos -=100;
+        while (robot.lm.isBusy()){
+
+        }
+        //open claw
+        robot.cc.setPosition(1);
+        robot.cc2.setPosition(0);
+        forward(-8, 0.4);
+        //close claw
         robot.cc.setPosition(0);
-        forward(48, 0.4);
-        robot.lm.setTargetPosition(4470);
+        robot.cc2.setPosition(1);
+        robot.lm.setTargetPosition(2000);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
-        turning(23);
-        robot.cc.setPosition(0.3);
+        while(robot.lm.isBusy()){
+
+        }
+
+        forward(48, 0.4);
+        //move lift motor ope to high junction
+        robot.lm.setTargetPosition(4100);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
+        while(robot.lm.isBusy()){
+
+        }
+
+        //turn to face high junction
+        turning(247);
+        while(robot.rb.isBusy()){
+
+        }
+        forward(-5, 0.4);
+        //open claw
+        robot.cc.setPosition(1);
+        robot.cc2.setPosition(0);
+        //move lift motor down to 0
         robot.lm.setTargetPosition(0);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
+        //undo previeous turn
+        turning(23);
+        //move forward to align
+        forward(-24, 0.4);
+        //turn 90
+        turning(95);
+        //forward to park
+        forward(-12, 0.4);
+
+
+
 
         /* Possible auto (2 points)
 turning(-90);

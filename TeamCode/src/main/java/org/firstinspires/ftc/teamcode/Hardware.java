@@ -91,7 +91,7 @@ public class Hardware {
         try {
             lm = hwMap.get(DcMotor.class, "lm");
             lm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            lm.setDirection(DcMotorSimple.Direction.REVERSE);
+            //lm.setDirection(DcMotorSimple.Direction.REVERSE);
             lm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             lm.setPower(0);
         } catch (Exception p_exception) {
