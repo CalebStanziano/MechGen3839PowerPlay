@@ -19,7 +19,12 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //stackPos depreciates as the cycle continues.
-        int stackPos = 1100;
+        int stackPos = 845;
+        double angle = robot.gyro.getAngularOrientation().firstAngle;
+        while(opModeIsActive()){
+            telemetry.addData("Angle: ", angle);
+            telemetry.update();
+        }
 
         waitForStart();
         runtime.reset();
@@ -35,7 +40,7 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.cc.setPosition(0);
         robot.cc2.setPosition(1);
 
-        turning(280);
+        turning(277);
 
         forward(-14.35, 0.4);
         //close claw
@@ -52,20 +57,21 @@ public class AutoDriveTrain extends LinearOpMode {
         //open claw
         robot.cc.setPosition(1);
         robot.cc2.setPosition(0);
-        forward(-8, 0.4);
+        forward(-7.5, 0.4);
         //close claw
         robot.cc.setPosition(0);
         robot.cc2.setPosition(1);
+        //lift
         robot.lm.setTargetPosition(2000);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.lm.setPower(1);
+        robot.lm.setPower(.75);
         while(robot.lm.isBusy()){
 
         }
 
-        forward(48, 0.4);
+        forward(24, 0.4);
         //move lift motor ope to high junction
-        robot.lm.setTargetPosition(4100);
+        robot.lm.setTargetPosition(3220);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         while(robot.lm.isBusy()){
@@ -73,10 +79,18 @@ public class AutoDriveTrain extends LinearOpMode {
         }
 
         //turn to face high junction
-        turning(247);
+        turning(140);
         while(robot.rb.isBusy()){
 
         }
+
+        //open claw
+        robot.cc.setPosition(1);
+        robot.cc2.setPosition(0);
+
+
+
+        /*
         forward(-5, 0.4);
         //open claw
         robot.cc.setPosition(1);
@@ -87,12 +101,16 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.lm.setPower(1);
         //undo previeous turn
         turning(23);
+        while(robot.rb.isBusy()){ }
         //move forward to align
-        forward(-24, 0.4);
+        forward(-20, 0.4);
+        while(robot.rb.isBusy()){ }
         //turn 90
         turning(95);
+        while(robot.rb.isBusy()){ }
         //forward to park
         forward(-12, 0.4);
+        while(robot.rb.isBusy()){ }
 
 
 
