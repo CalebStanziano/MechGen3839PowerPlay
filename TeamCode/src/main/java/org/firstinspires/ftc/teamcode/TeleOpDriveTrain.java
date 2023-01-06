@@ -81,14 +81,14 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             //Cone Claw
             if(gamepad2.a){
-                robot.cc.setPosition(1);
-                robot.cc2.setPosition(0);
+                robot.cc.setPosition(0.8);
+                robot.cc2.setPosition(0.5);
                 telemetry.addData("Position", "open");
                 telemetry.update();
             }
             if(gamepad2.y){
-                robot.cc.setPosition(0);
-                robot.cc2.setPosition(1);
+                robot.cc.setPosition(0.3);
+                robot.cc2.setPosition(0.9);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
             }

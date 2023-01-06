@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+
 @Autonomous (name = "Cycle Blue Auto")
 public class AutoDriveTrain extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
@@ -19,33 +20,33 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //stackPos depreciates as the cycle continues.
-        int stackPos = 845;
+        int stackPos = 610;
         double angle = robot.gyro.getAngularOrientation().firstAngle;
-        while(opModeIsActive()){
-            telemetry.addData("Angle: ", angle);
-            telemetry.update();
-        }
+        //while(opModeIsActive()){
+            //telemetry.addData("Angle: ", angle);
+            //telemetry.update();
+        //}
 
         waitForStart();
         runtime.reset();
 
 
         //open claw
-        robot.cc.setPosition(1);
-        robot.cc2.setPosition(0);
+        robot.cc.setPosition(0.8);
+        robot.cc2.setPosition(0.5);
         //forward
         forward(-55, 0.4);
         forward(5, 0.4);
         //close claw
-        robot.cc.setPosition(0);
-        robot.cc2.setPosition(1);
+        robot.cc.setPosition(0.3);
+        robot.cc2.setPosition(0.9);
 
         turning(277);
 
         forward(-14.35, 0.4);
         //close claw
-        robot.cc.setPosition(0);
-        robot.cc2.setPosition(1);
+        robot.cc.setPosition(0.3);
+        robot.cc2.setPosition(0.9);
         //move lift motor to stackPos
         robot.lm.setTargetPosition(stackPos);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -55,14 +56,17 @@ public class AutoDriveTrain extends LinearOpMode {
 
         }
         //open claw
-        robot.cc.setPosition(1);
-        robot.cc2.setPosition(0);
-        forward(-7.5, 0.4);
+        robot.cc.setPosition(0.8);
+        robot.cc2.setPosition(0.5);
+        forward(-5.5, 0.4);
+        while(robot.rb.isBusy()){
+
+        }
         //close claw
-        robot.cc.setPosition(0);
-        robot.cc2.setPosition(1);
+        robot.cc.setPosition(0.3);
+        robot.cc2.setPosition(0.9);
         //lift
-        robot.lm.setTargetPosition(2000);
+        robot.lm.setTargetPosition(1900);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(.75);
         while(robot.lm.isBusy()){
@@ -83,10 +87,9 @@ public class AutoDriveTrain extends LinearOpMode {
         while(robot.rb.isBusy()){
 
         }
-
         //open claw
-        robot.cc.setPosition(1);
-        robot.cc2.setPosition(0);
+        robot.cc.setPosition(0.8);
+        robot.cc2.setPosition(0.5);
 
 
 
@@ -321,7 +324,8 @@ turning(-90);
         double currentAngle = robot.gyro.getAngularOrientation().firstAngle;
         double finalAngle = currentAngle + degrees;
 
-        if (finalAngle > 180) {
+
+        if (finalAngle >= 180) {
             finalAngle -= 360;
         } else if (finalAngle < -180) {
             finalAngle += 360;
