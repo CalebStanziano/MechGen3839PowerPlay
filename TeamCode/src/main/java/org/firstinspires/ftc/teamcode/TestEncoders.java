@@ -24,16 +24,18 @@ public class TestEncoders extends LinearOpMode {
             if(gamepad1.y){
                 position += 5;
                 robot.lm.setTargetPosition(position);
-                telemetry.addData("Position", position);
-                telemetry.update();
+//                telemetry.addData("Position", robot.lm.getCurrentPosition());
+//                telemetry.update();
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(.1);
             }
+            telemetry.addData("Position", robot.lm.getCurrentPosition());
+            telemetry.update();
             if(gamepad1.a){
                 position -= 5;
                 robot.lm.setTargetPosition(position);
-                telemetry.addData("Position", position);
-                telemetry.update();
+//                telemetry.addData("Position", position);
+//                telemetry.update();
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(-.1);
             }

@@ -19,6 +19,7 @@ public class TeleOpDriveTrain extends LinearOpMode {
         waitForStart();
         boolean xKey = true;
         boolean xPressed = false;
+        boolean dPadPressed = false;
 
         robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -95,39 +96,57 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
-            /*
+
             //pick-up
             if(gamepad2.dpad_down) {
-                robot.lm.setTargetPosition(-400);
-                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.lm.setPower(1);
+                dPadPressed = true;
+                while(robot.lm.getCurrentPosition() != 0) {
+                    robot.lm.setTargetPosition(0);
+                    robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    robot.lm.setPower(1);
+                }
+                dPadPressed = false;
+
             }
             //92.0754717
             //low junction
             if(gamepad2.dpad_left){
-                robot.lm.setTargetPosition(910);
-                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.lm.setPower(1);
+                dPadPressed = true;
+                while(robot.lm.getCurrentPosition() != 2090) {
+                    robot.lm.setTargetPosition(2090);
+                    robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    robot.lm.setPower(1);
+                }
+                dPadPressed = false;
+
             }
             //mid. junction
             if(gamepad2.dpad_up){
-                robot.lm.setTargetPosition(2220);
-                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.lm.setPower(1);
+                dPadPressed = true;
+                while(robot.lm.getCurrentPosition() != 3282) {
+                    robot.lm.setTargetPosition(3282);
+                    robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    robot.lm.setPower(1);
+                }
+                dPadPressed = false;
             }
             //high junction
             if(gamepad2.dpad_right){
-                robot.lm.setTargetPosition(2650);
-                robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                robot.lm.setPower(1);
+                dPadPressed = true;
+                while(robot.lm.getCurrentPosition() != 4248) {
+                    robot.lm.setTargetPosition(4248);
+                    robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    robot.lm.setPower(1);
+                }
+                dPadPressed = false;
             }
             //ground junction.
             if(gamepad2.b){
-                robot.lm.setTargetPosition(1070);
+                robot.lm.setTargetPosition(322);
                 robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 robot.lm.setPower(1);
             }
-            */
+
 
             //reset encoders
             if(gamepad2.left_bumper && gamepad2.right_bumper){
@@ -137,16 +156,20 @@ public class TeleOpDriveTrain extends LinearOpMode {
 
             }
 
+            // Manuel Controls
             if(gamepad2.left_stick_y > 0){
+                robot.lm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 robot.lm.setPower(-1);
             }
             else if(gamepad2.left_stick_y < 0) {
+                robot.lm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
                 robot.lm.setPower(1);
                 if(robot.lm.getCurrentPosition() == 0){
                     robot.lm.setPower(0);
                 }
             } else{
                 robot.lm.setPower(0);
+                robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             }
         }
     }

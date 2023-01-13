@@ -27,10 +27,17 @@ public class AutoDriveTrain extends LinearOpMode {
             //telemetry.update();
         //}
 
+        //Stack 1 = 1299
+        //Stack 2 = 980
+        //Stack 3 = 752
+        //Stack 4 = 420
+        //Stack 5 = 92
+
         waitForStart();
         runtime.reset();
+        runtime.startTime();
 
-
+/** Get signal cone out of the way */
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
@@ -41,32 +48,38 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
 
+/** Start Cycle 1 */
+        //face stack
         turning(277);
-
+        //move towards the stack
         forward(-14.35, 0.4);
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
-        //move lift motor to stackPos
-        robot.lm.setTargetPosition(stackPos);
+        //move lift motor to stackPos 1
+        robot.lm.setTargetPosition(1100);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
-        stackPos -=100;
+        //stackPos -=100;
         while (robot.lm.isBusy()){
 
         }
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
-        forward(-5.5, 0.4);
-        while(robot.rb.isBusy()){
+        forward(-8, 0.4);
+        //while(robot.rb.isBusy()){
 
-        }
+        //}
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
+        sleep(2000);
+        //move back a little
+        forward(3,0.25);
+
         //lift
-        robot.lm.setTargetPosition(1900);
+        robot.lm.setTargetPosition(2000);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(.75);
         while(robot.lm.isBusy()){
@@ -75,21 +88,71 @@ public class AutoDriveTrain extends LinearOpMode {
 
         forward(24, 0.4);
         //move lift motor ope to high junction
-        robot.lm.setTargetPosition(3220);
+        robot.lm.setTargetPosition(4500);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
+        sleep(2000);
+        //turn to face high junction
+        turning(138);
+
+        //open claw
+        robot.cc.setPosition(0.8);
+        robot.cc2.setPosition(0.5);
+
+        //down to grab stack 2
+        robot.lm.setTargetPosition(780);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         while(robot.lm.isBusy()){
 
         }
+        //turn to face stack
+        turning(230);
 
-        //turn to face high junction
-        turning(140);
-        while(robot.rb.isBusy()){
-
-        }
+/** Start Cycle 2
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
+        //forward to stack
+        forward(-24, 0.4);
+        //close claw
+        robot.cc.setPosition(0.3);
+        robot.cc2.setPosition(0.9);
+        //sleep(2000);
+        //lift
+        robot.lm.setTargetPosition(2000);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(.75);
+        while(robot.lm.isBusy()){
+
+        }
+        forward(24, 0.4);
+        //move lift motor ope to high junction
+        robot.lm.setTargetPosition(4248);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
+        sleep(1000);
+        //turn to face high junction
+        turning(140);
+
+        //open claw
+        robot.cc.setPosition(0.8);
+        robot.cc2.setPosition(0.5);
+
+        //down to grab stack 3
+        robot.lm.setTargetPosition(552);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
+        while(robot.lm.isBusy()){
+
+        }
+*/
+        //while(runtime.time() < 31){
+
+        //}
+
+
+
 
 
 
