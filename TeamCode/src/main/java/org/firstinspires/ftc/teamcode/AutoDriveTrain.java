@@ -88,7 +88,7 @@ public class AutoDriveTrain extends LinearOpMode {
 
         forward(24, 0.4);
         //move lift motor ope to high junction
-        robot.lm.setTargetPosition(4500);
+        robot.lm.setTargetPosition(4248);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         sleep(2000);
