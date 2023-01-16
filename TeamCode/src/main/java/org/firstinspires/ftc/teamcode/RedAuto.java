@@ -18,10 +18,20 @@ public class RedAuto extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
-        //robot.cc.setPosition();
 
+
+        //close claw
+        robot.cc.setPosition(0.3);
+        robot.cc2.setPosition(0.9);
         //forward
         forward(-24, 0.4);
+        turning(130);
+        forward(-5,0.4);
+        //open claw
+        robot.cc.setPosition(0.8);
+        robot.cc2.setPosition(0.5);
+        forward(5,0.4);
+        turning(45);
 
         /* Possible auto (2 points)
 turning(90);
@@ -56,7 +66,7 @@ turning(90);
 
         robot.setPower(-speedMoving, -speedMoving, -speedMoving, -speedMoving);
 
-        while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
+        while(opModeIsActive() && (robot.rf.isBusy())){
 
         }
         robot.setPower(0,0,0,0);
@@ -94,7 +104,7 @@ turning(90);
             //robot.rf.setPower(speed);
             //robot.lb.setPower(speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
+            while(opModeIsActive() && (robot.rf.isBusy())){
 
             }
             robot.setPower(0,0,0,0);

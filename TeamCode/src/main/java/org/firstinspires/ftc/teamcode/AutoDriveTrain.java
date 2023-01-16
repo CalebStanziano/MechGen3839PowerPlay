@@ -74,7 +74,7 @@ public class AutoDriveTrain extends LinearOpMode {
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
-        sleep(2000);
+        sleep(500);
         //move back a little
         forward(3,0.25);
 
@@ -88,10 +88,10 @@ public class AutoDriveTrain extends LinearOpMode {
 
         forward(24, 0.4);
         //move lift motor ope to high junction
-        robot.lm.setTargetPosition(4248);
+        robot.lm.setTargetPosition(4275);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
-        sleep(2000);
+        sleep(1000);
         //turn to face high junction
         turning(138);
 
@@ -100,7 +100,7 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.cc2.setPosition(0.5);
 
         //down to grab stack 2
-        robot.lm.setTargetPosition(780);
+        robot.lm.setTargetPosition(480);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         while(robot.lm.isBusy()){
@@ -109,16 +109,16 @@ public class AutoDriveTrain extends LinearOpMode {
         //turn to face stack
         turning(230);
 
-/** Start Cycle 2
+/** Start Cycle 2 */
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
         //forward to stack
-        forward(-24, 0.4);
+        forward(-27, 0.4);
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
-        //sleep(2000);
+        sleep(1000);
         //lift
         robot.lm.setTargetPosition(2000);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -128,7 +128,7 @@ public class AutoDriveTrain extends LinearOpMode {
         }
         forward(24, 0.4);
         //move lift motor ope to high junction
-        robot.lm.setTargetPosition(4248);
+        robot.lm.setTargetPosition(4275);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         sleep(1000);
@@ -140,13 +140,13 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.cc2.setPosition(0.5);
 
         //down to grab stack 3
-        robot.lm.setTargetPosition(552);
+        robot.lm.setTargetPosition(352);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         while(robot.lm.isBusy()){
 
         }
-*/
+
         //while(runtime.time() < 31){
 
         //}
