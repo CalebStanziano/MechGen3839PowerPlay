@@ -22,6 +22,7 @@ public class AutoDriveTrain extends LinearOpMode {
         //stackPos depreciates as the cycle continues.
         int stackPos = 610;
         double angle = robot.gyro.getAngularOrientation().firstAngle;
+        double autoSpeed = 0.6;
         //while(opModeIsActive()){
             //telemetry.addData("Angle: ", angle);
             //telemetry.update();
@@ -42,8 +43,8 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
         //forward
-        forward(-55, 0.4);
-        forward(5, 0.4);
+        forward(-55, autoSpeed);
+        forward(5, autoSpeed);
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
@@ -52,7 +53,7 @@ public class AutoDriveTrain extends LinearOpMode {
         //face stack
         turning(277);
         //move towards the stack
-        forward(-14.35, 0.4);
+        forward(-14.35, autoSpeed);
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
@@ -67,7 +68,7 @@ public class AutoDriveTrain extends LinearOpMode {
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
-        forward(-8, 0.4);
+        forward(-8, autoSpeed);
         //while(robot.rb.isBusy()){
 
         //}
@@ -86,7 +87,7 @@ public class AutoDriveTrain extends LinearOpMode {
 
         }
 
-        forward(24, 0.4);
+        forward(23.5, autoSpeed);
         //move lift motor ope to high junction
         robot.lm.setTargetPosition(4275);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -94,6 +95,7 @@ public class AutoDriveTrain extends LinearOpMode {
         sleep(1000);
         //turn to face high junction
         turning(138);
+        forward(1, autoSpeed);
 
         //open claw
         robot.cc.setPosition(0.8);
@@ -114,7 +116,7 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
         //forward to stack
-        forward(-27, 0.4);
+        forward(-25.5, autoSpeed);
         //close claw
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
@@ -126,7 +128,7 @@ public class AutoDriveTrain extends LinearOpMode {
         while(robot.lm.isBusy()){
 
         }
-        forward(24, 0.4);
+        forward(23.5, autoSpeed);
         //move lift motor ope to high junction
         robot.lm.setTargetPosition(4275);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -134,6 +136,7 @@ public class AutoDriveTrain extends LinearOpMode {
         sleep(1000);
         //turn to face high junction
         turning(140);
+        forward(1, autoSpeed);
 
         //open claw
         robot.cc.setPosition(0.8);
