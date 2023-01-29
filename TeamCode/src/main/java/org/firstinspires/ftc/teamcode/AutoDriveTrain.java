@@ -22,7 +22,7 @@ public class AutoDriveTrain extends LinearOpMode {
         //stackPos depreciates as the cycle continues.
         int stackPos = 610;
         double angle = robot.gyro.getAngularOrientation().firstAngle;
-        double autoSpeed = 0.6;
+        double autoSpeed = 0.5;
         //while(opModeIsActive()){
             //telemetry.addData("Angle: ", angle);
             //telemetry.update();
@@ -95,14 +95,14 @@ public class AutoDriveTrain extends LinearOpMode {
         sleep(1000);
         //turn to face high junction
         turning(138);
-        forward(1, autoSpeed);
+        forward(2, autoSpeed);
 
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
 
         //down to grab stack 2
-        robot.lm.setTargetPosition(480);
+        robot.lm.setTargetPosition(800);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         while(robot.lm.isBusy()){
@@ -135,8 +135,8 @@ public class AutoDriveTrain extends LinearOpMode {
         robot.lm.setPower(1);
         sleep(1000);
         //turn to face high junction
-        turning(140);
-        forward(1, autoSpeed);
+        turning(141);
+        //forward(1, autoSpeed);
 
         //open claw
         robot.cc.setPosition(0.8);
