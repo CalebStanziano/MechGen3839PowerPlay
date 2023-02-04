@@ -14,12 +14,12 @@ public class CycleAutoLow  extends LinearOpMode {
         robot.init(hardwareMap);
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        int botPosition = 0;
+        //int botPosition = 0;
         robot.lm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.lm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //stackPos depreciates as the cycle continues.
-        int stackPos = 610;
-        double angle = robot.gyro.getAngularOrientation().firstAngle;
+        //int stackPos = 610;
+        //double angle = robot.gyro.getAngularOrientation().firstAngle;
         double autoSpeed = 0.5;
 
         waitForStart();
@@ -43,7 +43,7 @@ public class CycleAutoLow  extends LinearOpMode {
         robot.cc.setPosition(0.3);
         robot.cc2.setPosition(0.9);
         //move lift motor to stackPos 1
-        robot.lm.setTargetPosition(1100);
+        robot.lm.setTargetPosition(1400);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(1);
         while (robot.lm.isBusy()){
@@ -60,7 +60,7 @@ public class CycleAutoLow  extends LinearOpMode {
         //move back a little
         forward(3,0.25);
         //lift
-        robot.lm.setTargetPosition(2090);
+        robot.lm.setTargetPosition(2400);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(.75);
         while(robot.lm.isBusy()){
@@ -69,15 +69,15 @@ public class CycleAutoLow  extends LinearOpMode {
         //backup to position
         forward(9, autoSpeed);
         //turn to face low junction
-        turning(-74.5);
+        turning(-76.5);
         forward(1, 0.4);
         //open claw
         robot.cc.setPosition(0.8);
         robot.cc2.setPosition(0.5);
         sleep(500);
         turning(74.5);
-        //lift
-        robot.lm.setTargetPosition(800);
+        //lift to position
+        robot.lm.setTargetPosition(1125);
         robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.lm.setPower(.75);
         while(robot.lm.isBusy()){
@@ -97,6 +97,7 @@ public class CycleAutoLow  extends LinearOpMode {
             double wheelMotor = 560;
             double ticks = (distanceMoving * (wheelMotor / wheelCircumference));
             robot.setPower(0, 0, 0, 0);
+            /*
             double startPosRf = robot.rf.getCurrentPosition();
             double startPosRb = robot.rb.getCurrentPosition();
             double startPosLf = robot.lf.getCurrentPosition();
@@ -107,6 +108,8 @@ public class CycleAutoLow  extends LinearOpMode {
             double PosLf = Math.abs(startPosLf - Math.round(startPosLf));
             double PosLb = Math.abs(startPosLb - Math.round(startPosLb));
 
+
+             */
 
             robot.rf.setTargetPosition((int) Math.round(ticks));
             robot.lf.setTargetPosition((int) Math.round(ticks));
@@ -126,8 +129,8 @@ public class CycleAutoLow  extends LinearOpMode {
             robot.setPower(-speedMoving, -speedMoving, -speedMoving, -speedMoving);
 
             while (opModeIsActive() && (robot.rf.isBusy())) {
-                double robotPos = robot.rf.getCurrentPosition();
-                telemetry.addData("Position of Bot:", robotPos);
+                //double robotPos = robot.rf.getCurrentPosition();
+                //telemetry.addData("Position of Bot:", robotPos);
             }
             robot.setPower(0, 0, 0, 0);
 
@@ -161,8 +164,8 @@ public class CycleAutoLow  extends LinearOpMode {
                 //robot.lb.setPower(speed);
 
                 while (opModeIsActive() && (robot.rf.isBusy())) {
-                    double robotPos = robot.rf.getCurrentPosition();
-                    telemetry.addData("Position of Bot:", robotPos);
+                    //double robotPos = robot.rf.getCurrentPosition();
+                    //telemetry.addData("Position of Bot:", robotPos);
                 }
                 robot.setPower(0, 0, 0, 0);
 
@@ -193,8 +196,8 @@ public class CycleAutoLow  extends LinearOpMode {
                 //robot.lf.setPower(-speed);
 
                 while (opModeIsActive() && (robot.rf.isBusy())) {
-                    double robotPos = robot.rf.getCurrentPosition();
-                    telemetry.addData("Position of Bot:", robotPos);
+                    //double robotPos = robot.rf.getCurrentPosition();
+                    //telemetry.addData("Position of Bot:", robotPos);
                 }
 
                 robot.setPower(0, 0, 0, 0);
@@ -226,8 +229,8 @@ public class CycleAutoLow  extends LinearOpMode {
                 //robot.lf.setPower(speed);
 
                 while (opModeIsActive() && (robot.rf.isBusy())) {
-                    double robotPos = robot.rf.getCurrentPosition();
-                    telemetry.addData("Position of Bot:", robotPos);
+                    //double robotPos = robot.rf.getCurrentPosition();
+                    //telemetry.addData("Position of Bot:", robotPos);
                 }
 
                 robot.setPower(0, 0, 0, 0);
@@ -259,8 +262,8 @@ public class CycleAutoLow  extends LinearOpMode {
                 //robot.lb.setPower(-speed);
 
                 while (opModeIsActive() && (robot.rf.isBusy())) {
-                    double robotPos = robot.rf.getCurrentPosition();
-                    telemetry.addData("Position of Bot:", robotPos);
+                    //double robotPos = robot.rf.getCurrentPosition();
+                    //telemetry.addData("Position of Bot:", robotPos);
                 }
 
                 robot.setPower(0, 0, 0, 0);
