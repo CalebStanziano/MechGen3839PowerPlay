@@ -11,7 +11,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 public class ConePipeline extends OpenCvPipeline {
     public Mat workingMatrix = new Mat();
     public String position = "BLUE";
-
+ double centerTotal = 0.0;
     public ConePipeline(){
 
     }
@@ -27,9 +27,9 @@ public class ConePipeline extends OpenCvPipeline {
         Imgproc.rectangle(workingMatrix, new Rect(115, 205, 25, 75), new Scalar(0,255,0));
 
         //0 = red, 1 = green, 2 = blue
-         double centerTotal = Core.sumElems(matCenter).val[2];
+         centerTotal = Core.sumElems(matCenter).val[2];
         centerTotal /= matCenter.cols() * matCenter.rows();
-        centerTotal = Math.round(centerTotal);
+        //centerTotal = Math.round(centerTotal);
 
         //logic here:
         //Blue = 200 Red = 100 Green = 0 These are fake numbers

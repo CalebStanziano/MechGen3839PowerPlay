@@ -16,9 +16,10 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 public class VisionAuto extends LinearOpMode {
     OpenCvCamera webCam;
     private ConePipeline detector;
-    private String position = "PURPLE";
+    private String position = "BLUE";
     Hardware robot = Hardware.getInstance();
     private ElapsedTime runtime = new ElapsedTime();
+
 
     public void runOpMode(){
         robot.init(hardwareMap);
@@ -34,18 +35,20 @@ public class VisionAuto extends LinearOpMode {
             position = detector.position;
             telemetry.addData("position", detector.workingMatrix);
             telemetry.update();
+            telemetry.addData("value", detector.centerTotal);
 
         }
         /**add code here **/
         telemetry.addData("position", detector.workingMatrix);
         telemetry.update();
-        if(position.equals("PURPLE")){
+        if(position.equals("BLUE")){
             forward(-4, 0.1);
         }
         if(position.equals("GREEN")){
             robot.cc.setPosition(0.3);
+            forward(-24,0.4);
         }
-        if(position.equals("YELLOW")){
+        if(position.equals("RED")){
 
         }
 
