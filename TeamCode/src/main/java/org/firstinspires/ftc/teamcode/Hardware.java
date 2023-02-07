@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 
+import org.openftc.easyopencv.OpenCvCamera;
+
 /**
  * 192.168.43.1:8080/dash
  * must be connected to robot wifi
@@ -32,6 +34,8 @@ public class Hardware {
 
 
     public BNO055IMU gyro;
+
+
 
 
     private static Hardware myInstance = null;
