@@ -30,5 +30,11 @@ public class teachAuto extends LinearOpMode {
         runtime.reset();
         //forward again 1
     }
+     while (runtime.seconds() < 1) {
+        robot.setPower(0.4, 0.4, 0.4, 0.4);
+    }
+        while (runtime.seconds() > 1) {
+        robot.setPower(0, 0, 0, 0);
+    }
 }
 

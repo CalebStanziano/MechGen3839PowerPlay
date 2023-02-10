@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp (name = "Tele Op Test")
 public class TestTele extends LinearOpMode {
@@ -65,11 +66,12 @@ public class TestTele extends LinearOpMode {
 
             if(gamepad2.x) {
                 robot.cc.setPosition(0);
+                robot.cc2.setPosition(0);
             } else {
                 robot.cc.setPosition(0.377);
+                robot.cc2.setPosition(0.377);
 
             }
-
 
 
         }

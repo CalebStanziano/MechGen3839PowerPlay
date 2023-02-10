@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -18,6 +20,9 @@ public class Hardware {
 
     //Cone claw Servo
     public Servo cc;
+    public Servo cc2;
+
+    public BNO055IMU gyro;
 
     public DcMotor liftMotor;
     private static Hardware myInstance = null;
@@ -74,7 +79,29 @@ public class Hardware {
 
 
         }
-                     }
+        try {
+            cc = hwMap.get(Servo.class, "cc");
+        } catch ( Exception p_exception) {
+            cc = null;
+        }
+
+        //gyro
+        try {
+            gyro = hwMap.get(BNO055IMU.class, "gyro");
+            BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+            parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+            parameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+            parameters.loggingEnabled = true;
+            parameters.loggingTag = "gyro";
+            parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+            gyro.initialize(parameters);
+        } catch (Exception p_exception) {
+            gyro = null;
+        }
+
+        }
+        }
+
                      public void setPower(double fr, double br ,double fl, double bl) {
                           if (rf!= null) {
                               rf.setPower(Range.clip(fr,-maxSpeed,maxSpeed));
