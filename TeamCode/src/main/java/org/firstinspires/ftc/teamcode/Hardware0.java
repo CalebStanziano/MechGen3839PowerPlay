@@ -30,7 +30,7 @@ public class Hardware0 {
             rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             rf.setPower(0);
         } catch (Exception p_exception) {
-            lf = null;
+            rf = null;
         }
 
         // Left Front Motor
