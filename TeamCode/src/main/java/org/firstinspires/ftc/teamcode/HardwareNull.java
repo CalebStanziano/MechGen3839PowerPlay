@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Hardware0 {
+public class HardwareNull {
     public DcMotor rf;
     public DcMotor lf;
     public DcMotor rb;
@@ -12,11 +12,11 @@ public class Hardware0 {
 
     public Servo servo1;
 
-    private static Hardware0 myInstance = null;
+    private static HardwareNull myInstance = null;
 
-    public static Hardware0 getInstance() {
+    public static HardwareNull getInstance() {
         if (myInstance == null) {
-            myInstance = new Hardware0();
+            myInstance = new HardwareNull();
         }
         return myInstance;
     }
