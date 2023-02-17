@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 public class HardwareNull {
+    //motors
     public DcMotor sweep;
-
     public DcMotor lift;
     public DcMotor rb;
     public DcMotor lb;
@@ -74,16 +74,11 @@ public class HardwareNull {
             servo1 = null;
         }
     }
-    public void setPower (double weep, double grav, double fl, double bl) {
-        if (sweep != null) {
-            sweep.setPower(Range.clip(weep, -maxSpeed, maxSpeed));
-        }
+    public void setPower (double br, double bl) {
         if (rb != null) {
-            rb.setPower(Range.clip(grav, -maxSpeed, maxSpeed));
+            rb.setPower(Range.clip(br, -maxSpeed, maxSpeed));
         }
-        if (lift != null) {
-            lift.setPower(Range.clip(fl, -maxSpeed, maxSpeed));
-        }
+
         if (lb != null) {
             lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
         }
