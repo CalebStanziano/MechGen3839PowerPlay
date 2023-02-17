@@ -6,8 +6,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 public class HardwareNull {
-    public DcMotor rf;
-    public DcMotor lf;
+    public DcMotor sweep;
+
+    public DcMotor lift;
     public DcMotor rb;
     public DcMotor lb;
 
@@ -28,22 +29,22 @@ public class HardwareNull {
 
         // Right Front Motor
         try {
-            rf = hwMap.get(DcMotor.class, "rf");
-            rf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rf.setPower(0);
+            sweep = hwMap.get(DcMotor.class, "rf");
+            sweep.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            sweep.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            sweep.setPower(0);
         } catch (Exception p_exception) {
-            rf = null;
+            sweep = null;
         }
 
         // Left Front Motor
         try {
-            lf = hwMap.get(DcMotor.class, "lf");
-            lf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            lf.setPower(0);
+            lift = hwMap.get(DcMotor.class, "lf");
+            lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            lift.setPower(0);
         } catch (Exception p_exception) {
-            lf = null;
+            lift = null;
         }
 
         // Right Back Motor
@@ -73,15 +74,15 @@ public class HardwareNull {
             servo1 = null;
         }
     }
-    public void setPower (double fr, double br, double fl, double bl) {
-        if (rf != null) {
-            rf.setPower(Range.clip(fr, -maxSpeed, maxSpeed));
+    public void setPower (double weep, double grav, double fl, double bl) {
+        if (sweep != null) {
+            sweep.setPower(Range.clip(weep, -maxSpeed, maxSpeed));
         }
         if (rb != null) {
-            rb.setPower(Range.clip(br, -maxSpeed, maxSpeed));
+            rb.setPower(Range.clip(grav, -maxSpeed, maxSpeed));
         }
-        if (lf != null) {
-            lf.setPower(Range.clip(fl, -maxSpeed, maxSpeed));
+        if (lift != null) {
+            lift.setPower(Range.clip(fl, -maxSpeed, maxSpeed));
         }
         if (lb != null) {
             lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));

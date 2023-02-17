@@ -6,7 +6,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp (name = "tele")
 public class optele extends LinearOpMode {
     HardwareNull robot = HardwareNull.getInstance();
-    public void runOpMode() throws InterruptedException {
-
+     public void runOpMode() throws InterruptedException {
+         robot.init(hardwareMap);
+         telemetry.addData(, );
     }
 }
