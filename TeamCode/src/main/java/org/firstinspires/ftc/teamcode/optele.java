@@ -33,18 +33,18 @@ public class optele extends LinearOpMode {
              double max = Math.max(Math.abs(forward - turning), Math.max(Math.abs(forward- turning),
                      Math.max(Math.abs(forward+ turning), Math.abs(forward+ turning))));
              if(max <  robot.maxSpeed){
-                 robot.setPower(forward- turning, forward- turning);
+                 robot.setPower(forward- turning, -(forward- turning));
              } else {
                  double scaleFactor = max / robot.maxSpeed;
-                 robot.setPower((forward- turning) * scaleFactor, (forward- turning) * scaleFactor);
+                 robot.setPower((forward- turning) * scaleFactor, -(forward- turning) * scaleFactor);
              }
 
              //Precision turning
              if(gamepad1.right_bumper){
-                 robot.setPower(-0.45, 0.45);
+                 robot.setPower(-0.45, -0.45);
              }
              if(gamepad1.left_bumper){
-                 robot.setPower(0.45, -0.45);
+                 robot.setPower(0.45, 0.45);
              }
          }
     }
