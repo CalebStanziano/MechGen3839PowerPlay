@@ -90,7 +90,7 @@ public class Hardware1 {
         if(lb!=null){
             lb.setPower(Range.clip(bl,-MaxSpeed,MaxSpeed));
         }
-        
+
     }
 
 }
