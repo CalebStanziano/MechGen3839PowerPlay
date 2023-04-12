@@ -12,7 +12,7 @@ public class Hardware1 {
     public DcMotor lb;
     public DcMotor rb;
     //defined motors
-    public Servo claw;
+    public Servo Claw;
     //defined servo
     public static Hardware1 myInstance=null;
     // idk
@@ -70,9 +70,9 @@ public class Hardware1 {
             lb = null;
         }
         try {
-            claw = hwMap.get(Servo.class, "claw");
+            Claw = hwMap.get(Servo.class, "cc");
         } catch (Exception p_exception) {
-            claw = null;
+            Claw = null;
         }
 
 
