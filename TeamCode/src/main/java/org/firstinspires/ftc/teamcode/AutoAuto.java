@@ -18,7 +18,8 @@ public class AutoAuto extends LinearOpMode {
 
         waitForStart();
         runtime.reset();
-        GoToPositionRobot(1,1,0.5);
+        //GoToPositionRobot(1,1,0.5);
+
     }
 
     public void GoToPositionRobot(double x, double y, double speed){

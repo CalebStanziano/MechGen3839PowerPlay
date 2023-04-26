@@ -49,7 +49,7 @@ public class Hardware {
         return myInstance;
     }
 
-    public double maxSpeed = 0.75;
+    public double maxSpeed = 1;
 
     public void init(HardwareMap hwMap) {
 
