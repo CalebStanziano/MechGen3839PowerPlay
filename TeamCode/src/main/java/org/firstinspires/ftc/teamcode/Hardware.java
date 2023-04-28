@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Range;
 
 public class Hardware {
     public DcMotor rb;
@@ -40,8 +41,13 @@ public class Hardware {
             rb = null;
         }
     }
-    public void forward(double br,double bl){
-        
+    public void setPower(double br,double bl){
+        if (rb != null) {
+            rb.setPower(Range.clip(br, -maxSpeed, maxSpeed));
+        }
+        if (lb != null) {
+            lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
+        }
 
     }
 }
