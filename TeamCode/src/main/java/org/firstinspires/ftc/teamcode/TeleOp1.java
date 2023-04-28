@@ -27,13 +27,22 @@ Hardware1 robot = Hardware1.getInstance();
             forward = gamepad1.left_stick_y;
             strafing = gamepad1.left_stick_x;
             turning = gamepad1.right_stick_x;
+            //Strafing
+            double max = Math.max(Math.abs(forward - strafing - turning), Math.max(Math.abs(forward + strafing - turning),
+                    Math.max(Math.abs(forward + strafing + turning), Math.abs(forward - strafing + turning))));
+            if (max < robot.MaxSpeed) {
+                robot.setPower(forward - strafing - turning, forward + strafing - turning, forward + strafing + turning,
+                        forward - strafing + turning);
+            } else {
+                double scaleFactor = max / robot.MaxSpeed;
+                robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor
+                        ,(forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
+            }
             if(gamepad1.a){
                 robot.Claw.setPosition(1);
             }
 
-
-
-        }
+            }
 
 
 
