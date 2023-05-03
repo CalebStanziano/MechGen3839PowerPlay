@@ -1,12 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
 public class Hardware {
     public DcMotor rb;
     public DcMotor lb;
+    public DcMotor sm;
 
 
     private static Hardware myInstance = null;
@@ -36,9 +38,19 @@ public class Hardware {
             lb = hwMap.get(DcMotor.class, "lb");
             lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            lb.setDirection(DcMotorSimple.Direction.REVERSE);
             lb.setPower(0);
         } catch(Exception p_exception){
-            rb = null;
+            lb = null;
+        }
+        //Spin Motor
+        try {
+            sm = hwMap.get(DcMotor.class, "sm");
+            sm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            sm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            sm.setPower(0);
+        } catch(Exception p_exception){
+            sm = null;
         }
     }
     public void setPower(double br,double bl){
