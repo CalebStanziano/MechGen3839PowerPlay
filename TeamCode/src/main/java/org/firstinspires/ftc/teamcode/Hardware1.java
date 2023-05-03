@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
@@ -12,7 +13,7 @@ public class Hardware1 {
     public DcMotor lb;
     public DcMotor rb;
     //defined motors
-    public Servo Claw;
+    public Servo arm;
     //defined servo
     public static Hardware1 myInstance=null;
     // idk
@@ -43,6 +44,7 @@ public class Hardware1 {
             lf = hwMap.get(DcMotor.class, "lf");
             //checking if arguement is true, adding lfmotor into hwmap
             lf.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            lf.setDirection(DcMotorSimple.Direction.REVERSE);
             lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             lf.setPower(0);
 
@@ -63,6 +65,7 @@ public class Hardware1 {
             lb = hwMap.get(DcMotor.class, "lb");
             //checking if arguement is true, adding lbmotor into hwmap
             lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            lb.setDirection(DcMotorSimple.Direction.REVERSE);
             lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             lb.setPower(0);
 
@@ -70,9 +73,9 @@ public class Hardware1 {
             lb = null;
         }
         try {
-            Claw = hwMap.get(Servo.class, "cc");
+            arm = hwMap.get(Servo.class, "arm");
         } catch (Exception p_exception) {
-            Claw = null;
+            arm = null;
         }
 
 

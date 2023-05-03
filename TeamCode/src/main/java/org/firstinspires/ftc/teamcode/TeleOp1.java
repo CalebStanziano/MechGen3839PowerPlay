@@ -20,10 +20,11 @@ Hardware1 robot = Hardware1.getInstance();
         robot.rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.lf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        while(opModeIsActive()){
+        while(opModeIsActive()) {
             double forward;
             double strafing;
             double turning;
+            int ServoPos = 0;
             forward = gamepad1.left_stick_y;
             strafing = gamepad1.left_stick_x;
             turning = gamepad1.right_stick_x;
@@ -36,13 +37,22 @@ Hardware1 robot = Hardware1.getInstance();
             } else {
                 double scaleFactor = max / robot.MaxSpeed;
                 robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor
-                        ,(forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
+                        , (forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
             }
-            if(gamepad1.a){
-                robot.Claw.setPosition(1);
-            }
+            if (gamepad1.a) {
+                ServoPos += 1;
+                robot.arm.setPosition(ServoPos);
+                telemetry.addData("postion",ServoPos);
+
 
             }
+            else if (gamepad1.b) {
+                ServoPos -= 1;
+                robot.arm.setPosition(ServoPos);
+                telemetry.addData("postion",ServoPos);
+
+            }
+        }
 
 
 
