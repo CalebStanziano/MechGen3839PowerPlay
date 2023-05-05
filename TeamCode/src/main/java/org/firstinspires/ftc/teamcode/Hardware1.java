@@ -17,7 +17,7 @@ public class Hardware1 {
     //defined servo
     public static Hardware1 myInstance=null;
     // idk
-    public double MaxSpeed=1;
+    public double MaxSpeed=0.5;
     //setting the maxspeed to 1-double is decimal nums
     private Hardware1(){
     }
