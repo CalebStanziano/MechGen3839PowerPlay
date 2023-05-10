@@ -60,16 +60,17 @@ public class TeleOpDriveTrain extends LinearOpMode {
                 strafing = -0.45;
             }
 
-            //Strafing
-            double max = Math.max(Math.abs(forward - strafing - turning), Math.max(Math.abs(forward + strafing - turning),
-                    Math.max(Math.abs(forward + strafing + turning), Math.abs(forward - strafing + turning))));
+            //driving
+            double rfm = (forward - strafing - turning);
+            double rbm = (forward + strafing - turning);
+            double lfm = (forward + strafing + turning);
+            double lbm = (forward - strafing + turning);
+            double max = Math.max(Math.abs(rfm), Math.max(Math.abs(rbm), Math.max(Math.abs(lfm), Math.abs(lbm))));
             if (max < robot.maxSpeed) {
-                robot.setPower(forward - strafing - turning, forward + strafing - turning, forward + strafing + turning,
-                        forward - strafing + turning);
+                robot.setPower(rfm, rbm, lfm,lbm);
             } else {
                 double scaleFactor = max / robot.maxSpeed;
-                robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor,
-                        (forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
+                robot.setPower((rfm) * scaleFactor, (rbm) * scaleFactor,(lfm) * scaleFactor, (lbm) * scaleFactor);
             }
 
             //Precision turning
