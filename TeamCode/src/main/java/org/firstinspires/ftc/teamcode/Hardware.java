@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.Range;
 
 public class Hardware {
-    public DcMotor rb;
-    public DcMotor lb;
+    public DcMotor m0;
+    public DcMotor m1;
     public DcMotor sm;
 
 
@@ -20,32 +20,32 @@ public class Hardware {
         }
     return myInstance;
     }
-    public double maxSpeed = 0.75;
+    public double maxSpeed = 1;
 
     public void init(HardwareMap hwMap){
 
     //Right Back Motor
         try {
-            rb = hwMap.get(DcMotor.class, "rb");
-            rb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            rb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            rb.setPower(0);
+            m0 = hwMap.get(DcMotor.class, "m0");
+            m0.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            m0.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            m0.setPower(0);
         } catch(Exception p_exception){
-            rb = null;
+            m0 = null;
         }
     //Left Back Motor
         try {
-            lb = hwMap.get(DcMotor.class, "lb");
-            lb.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            lb.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-            lb.setDirection(DcMotorSimple.Direction.REVERSE);
-            lb.setPower(0);
+            m1 = hwMap.get(DcMotor.class, "m1");
+            m1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            m1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            m1.setDirection(DcMotorSimple.Direction.REVERSE);
+            m1.setPower(0);
         } catch(Exception p_exception){
-            lb = null;
+            m1 = null;
         }
         //Spin Motor
         try {
-            sm = hwMap.get(DcMotor.class, "sm");
+            sm = hwMap.get(DcMotor.class, "m2");
             sm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             sm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             sm.setPower(0);
@@ -54,11 +54,11 @@ public class Hardware {
         }
     }
     public void setPower(double br,double bl){
-        if (rb != null) {
-            rb.setPower(Range.clip(br, -maxSpeed, maxSpeed));
+        if (m0 != null) {
+            m0.setPower(Range.clip(br, -maxSpeed, maxSpeed));
         }
-        if (lb != null) {
-            lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
+        if ( m1 != null) {
+            m1.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
         }
 
     }
