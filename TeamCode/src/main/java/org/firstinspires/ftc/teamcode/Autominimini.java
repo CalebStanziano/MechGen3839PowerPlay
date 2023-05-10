@@ -36,6 +36,10 @@ public class Autominimini extends LinearOpMode {
         double PosLf = Math.abs(startPosLf - Math.round(startPosLf));
         double PosLb = Math.abs(startPosLb - Math.round(startPosLb));
 
+        robot.rf.setTargetPosition((int) Math.round(ticks));
+
+        robot.rf.setMode(Dcm);
+
 
 
     }

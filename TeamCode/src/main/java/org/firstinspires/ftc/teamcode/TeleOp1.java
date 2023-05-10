@@ -39,20 +39,32 @@ Hardware1 robot = Hardware1.getInstance();
                 robot.setPower((forward - strafing - turning) * scaleFactor, (forward + strafing - turning) * scaleFactor
                         , (forward + strafing + turning) * scaleFactor, (forward - strafing + turning) * scaleFactor);
             }
-            if (gamepad1.a) {
-                ServoPos += 1;
-                robot.arm.setPosition(ServoPos);
-                telemetry.addData("postion",ServoPos);
+            //up position
+            if (gamepad2.y) {
+                robot.arm.setPosition(0.655);
 
 
             }
-            else if (gamepad1.b) {
-                ServoPos -= 1;
-                robot.arm.setPosition(ServoPos);
-                telemetry.addData("postion",ServoPos);
+            //down position
+            if (gamepad2.b) {
+                robot.arm.setPosition(0.13);
 
             }
-        }
+            //bucket upright position
+            if (gamepad2.a) {
+                robot.arm.setPosition(0.5454);
+            }
+
+            //manual arm movement
+            while (gamepad2.left_stick_y > 0) {
+                    ServoPos += 0.01;
+                    robot.arm.setPosition(ServoPos);
+                }
+            while (gamepad2.left_stick_y < 0) {
+                    ServoPos -= 0.01;
+                    robot.arm.setPosition(ServoPos);
+                }
+            }
 
 
 
