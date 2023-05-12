@@ -1,26 +1,66 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 @Autonomous (name = "Auto")
 public class AutoMini extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
 
+    private ElapsedTime runtime = new ElapsedTime();
+
+    RevColorSensorV3 color;
+    //RevColorSensorV3 colorBack;
+
+
+
     public void runOpMode() {
         robot.init(hardwareMap);
+        runtime.reset();
+
+        try {
+            color = hardwareMap.get(RevColorSensorV3.class, "i0");
+        } catch(Exception p_exception) {
+            color = null;
+        }
+        /*
+        try {
+            colorBack = hardwareMap.get(RevColorSensorV3.class, "colorBack");
+        } catch(Exception p_exception) {
+            colorBack = null;
+        }
+
+         */
+
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         waitForStart();
-        if(){
-            forward(30, 0.7);
+        forward(36, 0.7);
+        telemetry.addData("Red", color.red());
+        telemetry.update();
+
+        if(color.red() > 95){
+            forward(108, 0.7);
+            turning(-90);
         } else {
-            forward(30, 0.7);
+            forward(108, 0.7);
+
+            /*
+            runtime.startTime();
+            while(runtime.seconds() < 2) {
+                robot.setPower(-0.7, 0.7);
+            }
+
+             */
 
         }
+
+
     }
 
 

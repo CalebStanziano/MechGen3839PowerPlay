@@ -19,7 +19,7 @@ public class TeleOpMini extends LinearOpMode {
         while (opModeIsActive()) {
             double forward;
             double turning;
-            double strafing =0;
+            double strafing = 0;
 
 
             forward = gamepad1.left_stick_y;
@@ -64,12 +64,21 @@ public class TeleOpMini extends LinearOpMode {
                 robot.setPower(-0.45, 0.45);
             }
 
+            //front thing
             if(gamepad1.a){
                 robot.sm.setPower(1);
-            } else if(gamepad1.y){
+            } else if(gamepad1.b){
                 robot.sm.setPower(-1);
             } else {
                 robot.sm.setPower(0);
+            }
+            //back thing
+            if(gamepad1.y){
+                robot.backM.setPower(1);
+            } else if(gamepad1.x){
+                robot.backM.setPower(-1);
+            } else {
+                robot.backM.setPower(0);
             }
 
 

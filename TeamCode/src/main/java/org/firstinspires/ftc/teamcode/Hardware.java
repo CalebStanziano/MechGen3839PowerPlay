@@ -12,6 +12,8 @@ public class Hardware {
     public DcMotor m1;
     public DcMotor sm;
 
+    public DcMotor backM;
+
     public BNO055IMU gyro;
 
 
@@ -55,6 +57,14 @@ public class Hardware {
             sm.setPower(0);
         } catch(Exception p_exception){
             sm = null;
+        }
+        try {
+            backM = hwMap.get(DcMotor.class, "m3");
+            backM.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            backM.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            backM.setPower(0);
+        } catch(Exception p_exception){
+            backM = null;
         }
         //Gyro
         try {
