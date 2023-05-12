@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous (name = "Drive Train Auto Blue")
+@Autonomous (name = "Cycle Blue Auto")
 public class AutoDriveTrain extends LinearOpMode {
     Hardware robot = Hardware.getInstance();
     private ElapsedTime runtime = new ElapsedTime();
@@ -20,13 +20,26 @@ public class AutoDriveTrain extends LinearOpMode {
         runtime.reset();
 
         //forward
-        forward(-24, 0.4);
+        forward(-48, 0.4);
+        turning(-90);
+        forward(-20, 0.4);
+        robot.lm.setTargetPosition(2000);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
+        robot.cc.setPosition(0.3);
+        forward(-4, 0.4);
+        robot.cc.setPosition(0);
+        forward(48, 0.4);
+        robot.lm.setTargetPosition(8920);
+        robot.lm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.lm.setPower(1);
+        turning(23);
+        robot.cc.setPosition(0.3);
 
         /* Possible auto (2 points)
 turning(-90);
         forward(-36, 0.4);
          */
-
 
 
 
@@ -37,6 +50,12 @@ turning(-90);
         double wheelMotor = 560;
         double ticks = (distanceMoving * (wheelMotor / wheelCircumference));
         robot.setPower(0, 0, 0, 0);
+        int startPosRf = robot.rf.getCurrentPosition();
+        int startPosRb = robot.rb.getCurrentPosition();
+        int startPosLf = robot.lf.getCurrentPosition();
+        int startPosLb = robot.rf.getCurrentPosition();
+
+
 
         robot.rf.setTargetPosition((int) Math.round(ticks));
         robot.lf.setTargetPosition((int) Math.round(ticks));
@@ -55,8 +74,9 @@ turning(-90);
 
         robot.setPower(-speedMoving, -speedMoving, -speedMoving, -speedMoving);
 
-        while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+        while(opModeIsActive() && (robot.rf.isBusy())){
+            double robotPos = robot.rf.getCurrentPosition();
+            telemetry.addData("Position of Bot:", robotPos );
         }
         robot.setPower(0,0,0,0);
 
@@ -93,8 +113,9 @@ turning(-90);
             //robot.rf.setPower(speed);
             //robot.lb.setPower(speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
             robot.setPower(0,0,0,0);
 
@@ -124,9 +145,11 @@ turning(-90);
             //robot.rb.setPower(-speed);
             //robot.lf.setPower(-speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
+
             robot.setPower(0,0,0,0);
 
             robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -155,9 +178,11 @@ turning(-90);
             //robot.rb.setPower(speed);
             //robot.lf.setPower(speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
+
             robot.setPower(0,0,0,0);
 
             robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -186,9 +211,11 @@ turning(-90);
             //robot.rf.setPower(-speed);
             //robot.lb.setPower(-speed);
 
-            while(opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 < ticks || opModeIsActive() && (robot.rf.getCurrentPosition()) + 10 > ticks){
-
+            while(opModeIsActive() && (robot.rf.isBusy())){
+                double robotPos = robot.rf.getCurrentPosition();
+                telemetry.addData("Position of Bot:", robotPos );
             }
+
             robot.setPower(0,0,0,0);
 
             robot.rf.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -199,6 +226,11 @@ turning(-90);
     }
 
     public void turning (double degrees) {
+
+        robot.lb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rb.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.lf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.rf.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         robot.rf.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rb.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

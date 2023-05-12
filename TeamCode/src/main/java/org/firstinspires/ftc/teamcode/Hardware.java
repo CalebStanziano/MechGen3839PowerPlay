@@ -28,6 +28,7 @@ public class Hardware {
 
     //Cone Claw servo
     public Servo cc;
+    public Servo cc2;
 
 
     public BNO055IMU gyro;
@@ -90,6 +91,7 @@ public class Hardware {
         try {
             lm = hwMap.get(DcMotor.class, "lm");
             lm.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            lm.setDirection(DcMotorSimple.Direction.REVERSE);
             lm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             lm.setPower(0);
         } catch (Exception p_exception) {
@@ -108,11 +110,17 @@ public class Hardware {
         } catch (Exception p_exception) {
             gyro = null;
         }
-        //Cone Claw Servo
+        //Cone Claw Servos
         try {
             cc = hwMap.get(Servo.class, "cc");
         } catch( Exception p_exception){
             cc = null;
+        }
+
+        try {
+            cc2 = hwMap.get(Servo.class, "cc2");
+        } catch(Exception p_exception){
+            cc2 = null;
         }
     }
 
@@ -131,6 +139,8 @@ public class Hardware {
             lb.setPower(Range.clip(bl, -maxSpeed, maxSpeed));
         }
     }
+
+   
     //public void spinTurret (double x, double y){
         /*if(x == 1){
             lm.setTargetPosition(1);

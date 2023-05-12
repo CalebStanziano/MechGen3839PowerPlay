@@ -13,18 +13,18 @@ public class TeleOpDriveTrain extends LinearOpMode {
     /*
      * https://www.chiefdelphi.com/t/controller-response-curve-approaches/161199
      */
-    double sCurve(double joyValue){
-        if(Math.abs(joyValue) < 10e-5){
-            return 0;
-        }
-        if(joyValue > 0){
-            return 0.08 + Math.pow(joyValue - 0.03, 3);
-        }
-        //if(joyValue < 0){
-            return -0.11 + Math.pow(joyValue + 0.04, 3);
-        //}
+//    double sCurve(double joyValue){
+//        if(Math.abs(joyValue) < 10e-5){
+//            return 0;
+//        }
+//        if(joyValue > 0){
+//            return 0.08 + Math.pow(joyValue - 0.03, 3);
+//        }
+//        //if(joyValue < 0){
+//            return -0.11 + Math.pow(joyValue + 0.04, 3);
+//        //}
 
-    }
+  //  }
     @Override
     public void runOpMode() throws InterruptedException{
         robot.init(hardwareMap);
@@ -45,9 +45,9 @@ public class TeleOpDriveTrain extends LinearOpMode {
             double spinTurretY;
 
 
-            forward = sCurve(gamepad1.left_stick_y);
-            turning  = sCurve(-gamepad1.right_stick_x);
-            strafing = sCurve(-gamepad1.left_stick_x);
+            forward = /*sCurve*/(gamepad1.left_stick_y);
+            turning  = /*sCurve*/(-gamepad1.right_stick_x);
+            strafing = /*sCurve*/(-gamepad1.left_stick_x);
             spinTurretX = gamepad2.right_stick_x;
             spinTurretY = gamepad2.right_stick_y;
 
@@ -98,14 +98,18 @@ public class TeleOpDriveTrain extends LinearOpMode {
             //Cone Claw
             if(gamepad2.a){
                 robot.cc.setPosition(0.3);
+                robot.cc2.setPosition(0.3);
                 telemetry.addData("Position", "open");
                 telemetry.update();
             }
             if(gamepad2.y){
                 robot.cc.setPosition(0.1);
+                robot.cc2.setPosition(0.1);
                 telemetry.addData("Position", "closed");
                 telemetry.update();
             }
+
+
 
             //Lift Motor Positions
             //0 = ground junction, 1 = low junction, 2 = med junction, 3 = high junction
