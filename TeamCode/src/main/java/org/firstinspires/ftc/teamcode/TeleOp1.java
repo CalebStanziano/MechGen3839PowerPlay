@@ -26,9 +26,9 @@ Hardware1 robot = Hardware1.getInstance();
             double turning;
             int ServoPos = 0;
             forward = gamepad1.left_stick_y;
-            strafing = gamepad1.left_stick_x;
-            turning = gamepad1.right_stick_x;
-            //Strafing
+            strafing = -gamepad1.left_stick_x;
+            turning = -gamepad1.right_stick_x;
+            //Driving
             double max = Math.max(Math.abs(forward - strafing - turning), Math.max(Math.abs(forward + strafing - turning),
                     Math.max(Math.abs(forward + strafing + turning), Math.abs(forward - strafing + turning))));
             if (max < robot.MaxSpeed) {
@@ -47,7 +47,7 @@ Hardware1 robot = Hardware1.getInstance();
             }
             //down position
             if (gamepad2.b) {
-                robot.arm.setPosition(0.13);
+                robot.arm.setPosition(0.075);
 
             }
             //bucket upright position
@@ -65,7 +65,6 @@ Hardware1 robot = Hardware1.getInstance();
                     robot.arm.setPosition(ServoPos);
                 }
             }
-
 
 
     }
